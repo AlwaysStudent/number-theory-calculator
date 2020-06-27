@@ -13,33 +13,37 @@ class ExtendedEuclidean:
     def __run(self):
         big = max(self.a, self.b)
         small = min(self.a, self.b)
-        big_list = []
-        small_list = []
-        remainder = []
-        small_coefficient_list = []
+        remainder = [big, small]
+        coefficient = []
         while small != 0:
-            big_list.append(big)
-            small_list.append(small)
-            small_coefficient_list.append(big // small)
+            coefficient.append(big // small)
             remainder.append(big % small)
             big, small = small, big % small
-        for i in range(len(big_list)):
-            print("%d = %d * %d + %d" % (big_list[i], small_coefficient_list[i], small_list[i], remainder[i]))
-        big_list.pop()
-        small_list.pop()
+        for i in range(len(coefficient)):
+            print("%d = %d * %d + %d" % (remainder[i], coefficient[i], remainder[i + 1], remainder[i + 2]))
         remainder.pop()
-        small_coefficient_list.pop()
-
-        top = len(big_list) - 1
-        print("  %d" % remainder[top])
-        print("= %d - %d * %d" % (big_list[top], small_coefficient_list[top], small_list[top]))
-
+        remainder = remainder[::-1]
+        coefficient.pop()
+        coefficient = [-i for i in coefficient[::-1]]
+        print(coefficient)
+        temp = [coefficient[0]]
+        for i in range(len(coefficient) - 1):
+            temp.append(temp[i] * coefficient[i + 1] + 1)
+        print(temp)
+        print("------------------------------------------------")
+        for i in range(len(coefficient)):
+            print("%d = %d + (%d) * %d" % (remainder[i], remainder[i + 2], coefficient[i], remainder[i + 1]))
+        print("------------------------------------------------")
+        print("%d" % remainder[0])
+        for i in range(len(coefficient) - 1):
+            print("= %d + (%d) * %d" % (remainder[i + 2], temp[i], remainder[i + 1]))
+            print("= %d + (%d) * (%d + (%d) * %d)" % (remainder[i + 2], temp[i], remainder[i + 3], coefficient[i + 1], remainder[i + 2]))
 
         return None, None
 
 
 def main():
-    ExtendedEuclidean(100, 19)
+    ExtendedEuclidean(8656, -7780)
 
 
 if __name__ == '__main__':
