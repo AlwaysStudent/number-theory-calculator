@@ -61,8 +61,6 @@ class ExtendedEuclidean(base.Process, base.Value):
         for i in range(1, len(coefficient)):
             left.append(right[i - 1])
             right.append(left[i] * (-coefficient[i]) + left[i - 1])
-        for i in range(len(left)):
-            print("= (%d) * %d + (%d) * %d" % (left[i], remainder[i + 2], right[i], remainder[i + 1]))
         if big == self.a:
             return remainder[0], left[-1], right[-1]
         else:
