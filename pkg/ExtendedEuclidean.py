@@ -23,7 +23,6 @@ class ExtendedEuclidean(base.Process, base.Value):
 
         for i in range(len(coefficient)):
             result += "{" + str(remainder[i]) + "} &=& {"+str(coefficient[i])+"} * {"+str(remainder[i + 1])+"} + {"+str(remainder[i + 2])+"} \\\\"
-            print("%d = %d * %d + %d" % (remainder[i], coefficient[i], remainder[i + 1], remainder[i + 2]))
 
         result += " \end{aligned} $$ $$ \\begin{aligned} "
         remainder.pop()
@@ -39,7 +38,8 @@ class ExtendedEuclidean(base.Process, base.Value):
         result += "{" + str(remainder[0]) + "}"
         for i in range(len(left)):
             result += " &=& ({" + str(left[i]) + "}) * {" + str(remainder[i + 2]) + "} + ({" + str(right[i]) + "}) * {" + str(remainder[i + 1]) + "} \\\\"
-            print("= (%d) * %d + (%d) * %d" % (left[i], remainder[i + 2], right[i], remainder[i + 1]))
+            if i < len(left) - 1:
+                result += " &=& ({" + str(left[i]) + "}) * {" + str(remainder[i + 2]) + "} + ({" + str(right[i]) + "}) * ({"+str(remainder[i + 3])+"} - ({" + str(coefficient[i + 1]) + "}) * {"+str(remainder[i + 2])+"}) \\\\"
 
         return result + " \end{aligned} $$"
 
