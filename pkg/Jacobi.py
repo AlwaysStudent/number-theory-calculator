@@ -2,26 +2,29 @@
 Author: AlwaysStudent
 PythonVersion: 3.7
 """
+import base
 
 
-class Jacobi:
+class Jacobi(base.Process, base.Value):
 	def __init__(self, a, m):
 		if m % 2 != 1:
-			print("[Error] m should be a odd number.")
+			self.a = -1
+			self.m = -1
 		else:
 			self.a = a
 			self.m = m
 
-	def calculator(self):
-		_cal(1, self.a, self.m)
+	def process(self):
+		pass
+
+	def value(self):
+		pass
 
 
+def main():
+	pass
 
-def _cal(result, a, m):
-	if a > m:
-		a = a % m
-	while a % 2 == 0:
-		a = a / 2
-		result *= (-1) ** ((m ** 2 - 1) / 8)
 
+if __name__ == '__main__':
+	main()
 
