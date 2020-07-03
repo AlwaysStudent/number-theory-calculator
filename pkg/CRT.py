@@ -21,7 +21,7 @@ class CRT(base.Process, base.Value):
         _M_ = []
         _InvM_ = []
         for i in range(self.length):
-            result += " * ".join([("{" + str(k) + "}") for k in self.mod])
+            result += " \\times ".join([("{" + str(k) + "}") for k in self.mod])
             m *= self.mod[i]
         result += "\\\\"
 
@@ -33,7 +33,7 @@ class CRT(base.Process, base.Value):
                 if self.mod[i] != self.mod[j]:
                     temp *= self.mod[j]
                     temp_list.append(self.mod[j])
-                result += " * ".join([("{" + str(k) + "}") for k in temp_list])
+                result += " \\times ".join([("{" + str(k) + "}") for k in temp_list])
             result += " = {" + str(temp) + "} \\\\"
             _M_.append(temp)
         result += "\\end{aligned} $$"
@@ -48,7 +48,7 @@ class CRT(base.Process, base.Value):
         value = 0
         result += "$$ \\begin{aligned} {x} &\equiv \sum_{i=1}^{" + str(self.length) + "} {{M}_{i}\cdot{M}_{i}^{'}\cdot{b}_{i}}\; mod \; {" + str(m) + "} \\\\ &\equiv ("
         for i in range(self.length):
-            result += "{" + str(_InvM_[i]) + "} * {" + str(_M_[i]) + "} * {" + str(self.remainder[i]) + "} "
+            result += "{" + str(_InvM_[i]) + "} \\times {" + str(_M_[i]) + "} \\times {" + str(self.remainder[i]) + "} "
             if i != self.length - 1:
                 result += " + "
             value += _InvM_[i] * _M_[i] * self.remainder[i]
