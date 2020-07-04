@@ -4,6 +4,7 @@ PythonVersion: 3.7
 """
 import markdown2 as md
 import codecs
+import IPython.external.mathjax as mj
 
 
 def main():
