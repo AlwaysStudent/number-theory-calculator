@@ -23,6 +23,10 @@
    $$ \begin{aligned} &\because (28, 21, 35) = 7\\ &\therefore{28} {x} \;\equiv\; {21}\;mod\;{35} \\&\therefore{4} {x} \;\equiv\; {3}\;mod\;{5} \\ \end{aligned} $$$$ \begin{aligned} {5} &= {1} \times {4} + {1} \\{4} &= {4} \times {1} + {0} \\ \end{aligned} $$ $$ \begin{aligned} {1} &= ({1}) \times {5} + ({-1}) \times {4} \\ \end{aligned} $$$$ \begin{aligned} \therefore {x} \;&\equiv\; {2}\;mod\;{5} \\ \end{aligned} $$ $$\begin{aligned}\therefore  {x} \;&\equiv\; {2}\;mod\;{35} \\{x} \;&\equiv\; {7}\;mod\;{35} \\{x} \;&\equiv\; {12}\;mod\;{35} \\{x} \;&\equiv\; {17}\;mod\;{35} \\{x} \;&\equiv\; {22}\;mod\;{35} \\{x} \;&\equiv\; {27}\;mod\;{35} \\{x} \;&\equiv\; {32}\;mod\;{35} \\\end{aligned} $$
 
 6. 欧拉/费马定理
+
+   $$ \begin{aligned} &\because \varphi({5}) = 4\\&\therefore {a}^{\varphi({p})} \equiv {7}^{4}\;mod\;{5} \\ \end{aligned} $$
+   $$ \begin{aligned} {7}^{1005} &\equiv {({7} ^ {4})}^{251} \times {7}^{1}\;mod\;{5} \\ &\equiv {7}^{1}\;mod\;{5} \\ &\equiv {2}\;mod\;{5} \\ \end{aligned} $$
+
 7. RSA计算和生成
 8. 椭圆曲线
 9.  E-Gimo
