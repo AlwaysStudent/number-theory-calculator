@@ -2,10 +2,10 @@
 Author: AlwaysStudent
 PythonVersion: 3.7
 """
-import base
+import Interface
 
 
-class DivMod(base.Process, base.Value):
+class PowerMod(Interface.Process, Interface.Value):
 	def __init__(self, a, b, p):
 		self.a = a
 		self.b = b
@@ -62,7 +62,7 @@ class DivMod(base.Process, base.Value):
 
 
 def main():
-	d = DivMod(23, 105, 31)
+	d = PowerMod(23, 105, 31)
 	x = d.process()
 	print(x)
 

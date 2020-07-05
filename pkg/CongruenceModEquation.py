@@ -3,11 +3,11 @@ Author: AlwaysStudent
 PythonVersion: 3.7
 """
 import math
-import base
+import Interface
 import ExtendedEuclidean
 
 
-class CongruenceModEquation(base.Value, base.Process):
+class CongruenceModEquation(Interface.Value, Interface.Process):
     def __init__(self, a, b, m, num=1):
         try:
             assert a % num == 0 and b % num == 0 and m % num == 0 and num == math.gcd(math.gcd(a, b), m)

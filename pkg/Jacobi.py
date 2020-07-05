@@ -2,10 +2,10 @@
 Author: AlwaysStudent
 PythonVersion: 3.7
 """
-import base
+import Interface
 
 
-class Jacobi(base.Process, base.Value):
+class Jacobi(Interface.Process, Interface.Value):
 	def __init__(self, a, m):
 		if m % 2 != 1:
 			self.a = -1

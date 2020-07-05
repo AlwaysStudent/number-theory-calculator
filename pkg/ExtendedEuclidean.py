@@ -2,10 +2,10 @@
 Author: AlwaysStudent
 PythonVersion: 3.7
 """
-import base
+import Interface
 
 
-class ExtendedEuclidean(base.Process, base.Value):
+class ExtendedEuclidean(Interface.Process, Interface.Value):
     def __init__(self, a, b):
         self.a = abs(a)
         self.b = abs(b)

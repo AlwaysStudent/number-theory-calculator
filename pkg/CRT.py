@@ -2,11 +2,11 @@
 Author: AlwaysStudent
 PythonVersion: 3.7
 """
-import base
+import Interface
 import ExtendedEuclidean
 
 
-class CRT(base.Process, base.Value):
+class CRT(Interface.Process, Interface.Value):
     def __init__(self, remainder, mod):
         self.remainder = remainder
         self.mod = mod
