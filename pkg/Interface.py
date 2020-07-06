@@ -15,3 +15,15 @@ class Value(metaclass=ABCMeta):
 	@abstractmethod
 	def value(self):
 		pass
+
+
+class Encode(metaclass=ABCMeta):
+	@abstractmethod
+	def encode(self, plain_text):
+		pass
+
+
+class Decode(metaclass=ABCMeta):
+	@abstractmethod
+	def decode(self, crypto_text):
+		pass

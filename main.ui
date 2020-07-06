@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>数论专用计算平台</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWebEngineView" name="WebView" native="true">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>0</y>
+      <width>471</width>
+      <height>571</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="ExtendedEuclideanMenu">
+    <property name="title">
+     <string>扩展欧几里得算法</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="PowerModMenu">
+    <property name="title">
+     <string>模大数幂乘</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="JacobiMenu">
+    <property name="title">
+     <string>Jacobi符号</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="CRTMenu">
+    <property name="title">
+     <string>孙子定理</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="CongruenceModMenu">
+    <property name="title">
+     <string>线性同余方程</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="EulerTheoremMenu">
+    <property name="title">
+     <string>欧拉定理</string>
+    </property>
+   </widget>
+   <addaction name="ExtendedEuclideanMenu"/>
+   <addaction name="PowerModMenu"/>
+   <addaction name="JacobiMenu"/>
+   <addaction name="CRTMenu"/>
+   <addaction name="CongruenceModMenu"/>
+   <addaction name="EulerTheoremMenu"/>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global">PySide2.QtWebEngineWidgets</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

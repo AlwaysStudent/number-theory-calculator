@@ -55,7 +55,7 @@ class PrivateKey:
         return True
 
 
-class RSA(Interface.Process, Interface.Value):
+class RSA(Interface.Process, Interface.Value, Interface.Encode, Interface.Decode):
     def __init__(self, bit_len, mode='FM'):
         self.public_key = PublicKey()
         self.private_key = PrivateKey()
@@ -63,7 +63,43 @@ class RSA(Interface.Process, Interface.Value):
         self.mode = mode
 
     def process(self):
-        pass
+        result = "$$ \\begin{aligned} "
+        prime_factory = GeneratePrimeFactory(self.bit_len, self.mode)
+        p = prime_factory.generate_prime()
+        q = prime_factory.generate_prime()
+        n = p * q
+        phi_n = (p - 1) * (q - 1)
+        result += "& random\;prime\;{p} = {" + str(p) + "} \\\\"
+        result += "& random\;prime\;{q} = {" + str(q) + "} \\\\"
+        result += "& {n} = {p} \\times {q} = {" + str(p) + "} \\times {" + str(q) + "} = {" + str(n) + "} \\\\"
+        result += "& \\varphi({n}) = (p - 1)(q - 1) = ({" + str(p) + "} - 1)({" + str(q) + "} - 1) = {" + str(phi_n) + "} \\\\"
+        while True:
+            e = random.randrange(3, phi_n, 1)
+            gcd_e_phi_n = math.gcd(phi_n, e)
+            if gcd_e_phi_n != 1:
+                continue
+            else:
+                break
+        result += "& random\;select\;e\;from\;{3}\;to\; " + str(phi_n) + "\; which\; makes\; (e, \\varphi(n)) = 1 \\\\"
+        result += "& e = {" + str(e) + "} \\\\"
+        t = ExtendedEuclidean.ExtendedEuclidean(phi_n, e)
+        _, _, d = t.value()
+        if d < 0:
+            d += phi_n
+        self.public_key.set_n(n)
+        self.public_key.set_e(e)
+        self.private_key.set_public_key(self.public_key)
+        self.private_key.set_d(d)
+        self.private_key.set_p(p)
+        self.private_key.set_q(q)
+        result += "& calculate\; d\; which\; makes\; ed \\equiv {1} \;mod\;\\varphi(n) \\\\ \\end{aligned} $$"
+        result += t.process()
+        result += "$$ \\begin{aligned} & \\therefore d = " + str(d) + "\\\\"
+        result += "& \\therefore PublicKey:(n, e) = (" + str(self.public_key.n) + ", " + str(self.public_key.e) + ") \\\\"
+        result += "& \\therefore PrivateKey:(PublicKey(n, e), p, q, d) = ((" + str(self.private_key.public_key.n) + ", "
+        result += str(self.private_key.public_key.e) + "), " + str(self.private_key.p) + ", " + str(self.private_key.q)
+        result += ", " + str(self.private_key.d) + ") \\\\ \\end{aligned} $$"
+        return result
 
     def value(self):
         prime_factory = GeneratePrimeFactory(self.bit_len, self.mode)
@@ -79,12 +115,26 @@ class RSA(Interface.Process, Interface.Value):
             else:
                 break
         _, _, d = ExtendedEuclidean.ExtendedEuclidean(phi_n, e).value()
+        if d < 0:
+            d += phi_n
         self.public_key.set_n(n)
         self.public_key.set_e(e)
         self.private_key.set_public_key(self.public_key)
         self.private_key.set_d(d)
         self.private_key.set_p(p)
         self.private_key.set_q(q)
+        return (self.private_key.public_key.n, self.private_key.public_key.e), self.private_key.p, self.private_key.q, self.private_key.d
+
+    def encode(self, plain_text):
+        if len(plain_text) * 8 > self.bit_len - 11:
+            raise ValueError("plain text is too long")
+        plain_text_num = int(''.join([add_zero(bin(ord(i)).replace("0b", "")) for i in plain_text]), 2)
+        t = PowerMod.PowerMod(plain_text_num, self.public_key.e, self.public_key.n)
+        return t.value()
+
+    def decode(self, crypto_text):
+        t = PowerMod.PowerMod(crypto_text, self.private_key.d, self.private_key.public_key.n)
+
         
 
 class GeneratePrimeFactory:
@@ -95,7 +145,7 @@ class GeneratePrimeFactory:
     def generate_prime(self):
         g = None
         if self.mode == "FM":
-            g = generate_prime_by_fermit(self.bit_len)
+            g = generate_prime_by_fermat(self.bit_len)
         elif self.mode == "MR":
             g = generate_prime_by_MR(self.bit_len)
         elif self.mode == "SS":
@@ -135,7 +185,7 @@ def many_fermat_test(p, times):
     return True
 
 
-def generate_prime_by_fermit(bit_len, times=0):
+def generate_prime_by_fermat(bit_len, times=0):
     while True:
         guess_p = generate_rand_odd(bit_len)
         if not times:
@@ -225,8 +275,12 @@ def generate_prime_by_SS(bit_len, times=0):
             return guessp
 
 
+def add_zero(bin_text):
+    return "0" * (8 - len(bin_text)) + bin_text
+
 def main():
-    pass
+    r = RSA(10)
+    print(r.process())
 
 
 if __name__ == '__main__':
