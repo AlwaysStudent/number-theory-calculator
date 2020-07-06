@@ -102,9 +102,12 @@ class RSA(Interface.Process, Interface.Value, Interface.Encode, Interface.Decode
         return result
 
     def value(self):
-        prime_factory = GeneratePrimeFactory(self.bit_len, self.mode)
+        prime_factory = GeneratePrimeFactory(self.bit_len, self.mode, 40)
         p = prime_factory.generate_prime()
         q = prime_factory.generate_prime()
+        while p == q:
+            p = prime_factory.generate_prime()
+            q = prime_factory.generate_prime()
         n = p * q
         phi_n = (p - 1) * (q - 1)
         while True:
@@ -125,31 +128,62 @@ class RSA(Interface.Process, Interface.Value, Interface.Encode, Interface.Decode
         self.private_key.set_q(q)
         return (self.private_key.public_key.n, self.private_key.public_key.e), self.private_key.p, self.private_key.q, self.private_key.d
 
+    def check(self):
+        try:
+            assert self.public_key.n == self.private_key.p * self.private_key.q
+            assert self.public_key.e * self.private_key.d % ((self.private_key.p - 1) * (self.private_key.q - 1)) == 1
+            assert self.public_key.e < self.public_key.n
+            assert self.private_key.d < self.public_key.n
+        except AssertionError:
+            raise ValueError("RSA init fail!")
+
     def encode(self, plain_text):
-        if len(plain_text) * 8 > self.bit_len - 11:
-            raise ValueError("plain text is too long")
+        self.check()
+        # if len(plain_text) * 8 > self.bit_len - 11:
+        #     raise ValueError("plain text is too long")
         plain_text_num = int(''.join([add_zero(bin(ord(i)).replace("0b", "")) for i in plain_text]), 2)
+        print(plain_text_num, self.public_key.e, self.public_key.n)
         t = PowerMod.PowerMod(plain_text_num, self.public_key.e, self.public_key.n)
-        return t.value()
+        qqq = t.value()
+        print(qqq)
+        print(pow(plain_text_num, self.public_key.e * self.private_key.d, self.public_key.n))
+        return qqq
 
     def decode(self, crypto_text):
+        print(crypto_text, self.private_key.d, self.private_key.public_key.n)
+        print(self.public_key.e * self.private_key.d % ((self.private_key.p - 1) * (self.private_key.q - 1)))
         t = PowerMod.PowerMod(crypto_text, self.private_key.d, self.private_key.public_key.n)
+        qqq = t.value()
+        print(qqq)
+        plain_text_num_1 = bin(qqq).replace("0b", "")[::-1]
+        temp = []
+        if len(plain_text_num_1) % 8 == 0:
+            length = len(plain_text_num_1) // 8
+        else:
+            length = len(plain_text_num_1) // 8 + 1
+        for i in range(length):
+            temp.append(plain_text_num_1[i * 8:i * 8 + 8])
+        l = []
+        for i in temp:
+            l.append(chr(int(i[::-1], 2)))
+        plain_text = "".join(l[::-1])
+        return plain_text
 
-        
 
 class GeneratePrimeFactory:
-    def __init__(self, bit_len, mode):
+    def __init__(self, bit_len, mode, times=0):
         self.bit_len = bit_len
         self.mode = mode
+        self.times = times
 
     def generate_prime(self):
         g = None
         if self.mode == "FM":
-            g = generate_prime_by_fermat(self.bit_len)
+            g = generate_prime_by_fermat(self.bit_len, self.times)
         elif self.mode == "MR":
-            g = generate_prime_by_MR(self.bit_len)
+            g = generate_prime_by_MR(self.bit_len, self.times)
         elif self.mode == "SS":
-            g = generate_prime_by_SS(self.bit_len)
+            g = generate_prime_by_SS(self.bit_len, self.times)
         return g
 
 
@@ -222,7 +256,7 @@ def one_MR_test(guess_p, b):
         if r == s - 1:
             return False
         r = r + 1
-        _, z = divmod(z*z, guess_p)
+        _, z = divmod(z * z, guess_p)
         if z == guess_p_1:
             return True
 
@@ -250,7 +284,7 @@ def one_SS_test(guess_p, b):
         return False
     j = Jacobi.Jacobi(b, guess_p).value()
     guess_p_1 = guess_p - 1
-    e, _ = divmod(guess_p_1, 2)  # rrr没有用
+    e, _ = divmod(guess_p_1, 2)
     z = PowerMod.PowerMod(b, e, guess_p).value()
     if is_congruent(j, z, guess_p):
         return True
@@ -278,9 +312,14 @@ def generate_prime_by_SS(bit_len, times=0):
 def add_zero(bin_text):
     return "0" * (8 - len(bin_text)) + bin_text
 
+
 def main():
-    r = RSA(10)
-    print(r.process())
+    r = RSA(20)
+    r.value()
+    x = r.encode("qwe")
+    print(x)
+    y = r.decode(x)
+    print(y)
 
 
 if __name__ == '__main__':
