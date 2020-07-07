@@ -6,83 +6,184 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>900</width>
+    <height>870</height>
    </rect>
-  </property>
-  <property name="mouseTracking">
-   <bool>false</bool>
   </property>
   <property name="windowTitle">
    <string>数论专用计算平台</string>
   </property>
-  <property name="autoFillBackground">
-   <bool>false</bool>
-  </property>
   <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="CongruenceModEquation">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>901</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="ExtendedEuclidean">
+     <attribute name="title">
+      <string>扩展欧几里得算法</string>
+     </attribute>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>871</width>
+        <height>191</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>a</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="ExtendedEuclideanAEditer"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>b</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="ExtendedEuclideanBEditer"/>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="0">
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>最小值（a）</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="ExtendedEuclideanMinAEditer"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>最大值（a）</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLineEdit" name="ExtendedEuclideanMaxAEditer"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>最小值（b）</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="ExtendedEuclideanMinBEditer"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>最大值（b）</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLineEdit" name="ExtendedEuclideanMaxBEditer"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="1">
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="2" column="0">
+          <widget class="QPushButton" name="ExtendedEuclideanCalculateButton">
+           <property name="text">
+            <string>计算</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="ExtendedEuclideanRandomButton">
+           <property name="text">
+            <string>随机</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="ExtendedEuclidean_1_Button">
+           <property name="text">
+            <string>逆元</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="PowerMod">
+     <attribute name="title">
+      <string>模大数幂乘</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="Jacobi">
+     <attribute name="title">
+      <string>Jacobi符号</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="CRT">
+     <attribute name="title">
+      <string>孙子定理</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="EulerTheorem">
+     <attribute name="title">
+      <string>欧拉定理</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>线性同余方程</string>
+     </attribute>
+    </widget>
+   </widget>
    <widget class="QWebEngineView" name="WebView" native="true">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>0</y>
-      <width>471</width>
-      <height>571</height>
+      <x>-1</x>
+      <y>229</y>
+      <width>901</width>
+      <height>641</height>
      </rect>
     </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="ExtendedEuclideanMenu">
-    <property name="title">
-     <string>扩展欧几里得算法</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="PowerModMenu">
-    <property name="title">
-     <string>模大数幂乘</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="JacobiMenu">
-    <property name="title">
-     <string>Jacobi符号</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="CRTMenu">
-    <property name="title">
-     <string>孙子定理</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="CongruenceModMenu">
-    <property name="title">
-     <string>线性同余方程</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="EulerTheoremMenu">
-    <property name="title">
-     <string>欧拉定理</string>
-    </property>
-   </widget>
-   <addaction name="ExtendedEuclideanMenu"/>
-   <addaction name="PowerModMenu"/>
-   <addaction name="JacobiMenu"/>
-   <addaction name="CRTMenu"/>
-   <addaction name="CongruenceModMenu"/>
-   <addaction name="EulerTheoremMenu"/>
-  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>
    <class>QWebEngineView</class>
    <extends>QWidget</extends>
-   <header location="global">PySide2.QtWebEngineWidgets</header>
+   <header location="global">PySide2.QtWebEngineWidgets.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
