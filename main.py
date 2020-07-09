@@ -9,6 +9,8 @@ from pkg import ExtendedEuclidean
 from pkg import PowerMod
 from pkg import Jacobi
 from pkg import CRT
+from pkg import EulerTheorem
+from pkg import CongruenceModEquation
 
 
 class MainWindow(QMainWindow):
@@ -16,22 +18,94 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ExtendedEuclideanInit()
-        self.PowerModInit()
-        self.JacobiInit()
+        self.CongruenceModEquationInit()
+        self.EulerTheoremInit()
         self.CRTInit()
+        self.JacobiInit()
+        self.PowerModInit()
+        self.ExtendedEuclideanInit()
+        self.ui.EulerTheorem.setFocus()
+
+    def CongruenceModEquationInit(self):
+        self.ui.CongruenceModEquationNumEditor.setText("1")
+        self.CongruenceModEquationRandomHandle()
+        self.ui.CongruenceModEquationRandomButton.clicked.connect(self.CongruenceModEquationRandomHandle)
+        self.ui.CongruenceModEquationCalculateButton.clicked.connect(self.CongruenceModEquationCalculateHandle)
+
+    def CongruenceModEquationRandomHandle(self):
+        if self.ui.CongruenceModEquationNumEditor.text().isdigit():
+            num = int(self.ui.CongruenceModEquationNumEditor.text())
+            a = random.randint(50, 200)
+            b = random.randint(50, 200)
+            m = random.randint(50, 200)
+            e = CongruenceModEquation.CongruenceModEquation(a, b, m, num)
+            while not CongruenceModEquation.check(e):
+                a = random.randint(50, 200)
+                b = random.randint(50, 200)
+                m = random.randint(50, 200)
+                e = CongruenceModEquation.CongruenceModEquation(a, b, m, num)
+            self.ui.CongruenceModEquationAEditor.setText(str(a))
+            self.ui.CongruenceModEquationBEditor.setText(str(b))
+            self.ui.CongruenceModEquationMEditor.setText(str(m))
+        else:
+            ErrorMessageBox("所需的文本框未填写或包含非数字")
+
+    def CongruenceModEquationCalculateHandle(self):
+        if self.ui.CongruenceModEquationAEditor.text().isdigit() and \
+                self.ui.CongruenceModEquationBEditor.text().isdigit() and \
+                self.ui.CongruenceModEquationMEditor.text().isdigit() and \
+                self.ui.CongruenceModEquationNumEditor.text().isdigit():
+            num = int(self.ui.CongruenceModEquationNumEditor.text())
+            a = int(self.ui.CongruenceModEquationAEditor.text())
+            b = int(self.ui.CongruenceModEquationBEditor.text())
+            m = int(self.ui.CongruenceModEquationMEditor.text())
+            e = CongruenceModEquation.CongruenceModEquation(a, b, m, num)
+            self.Display(e)
+        else:
+            ErrorMessageBox("所需的文本框未填写或包含非数字")
+
+    def EulerTheoremInit(self):
+        self.EulerTheoremRandomHandle()
+        self.ui.EulerTheoremRandomButton.clicked.connect(self.EulerTheoremRandomHandle)
+        self.ui.EulerTheoremCalculateButton.clicked.connect(self.EulerTheoremCalculateHandle)
+
+    def EulerTheoremRandomHandle(self):
+        a = random.randint(3, 100)
+        b = random.randint(500, 9999)
+        p = random.randint(100, 500)
+        e = EulerTheorem.EulerTheorem(a, b, p)
+        while not EulerTheorem.check(e):
+            a = random.randint(3, 100)
+            b = random.randint(500, 9999)
+            p = random.randint(100, 500)
+            e = EulerTheorem.EulerTheorem(a, b, p)
+        self.ui.EulerTheoremAEditor.setText(str(a))
+        self.ui.EulerTheoremBEditor.setText(str(b))
+        self.ui.EulerTheoremPEditor.setText(str(p))
+
+    def EulerTheoremCalculateHandle(self):
+        if self.ui.EulerTheoremAEditor.text().isdigit() and \
+                self.ui.EulerTheoremBEditor.text().isdigit() and \
+                self.ui.EulerTheoremPEditor.text().isdigit():
+            a = int(self.ui.EulerTheoremAEditor.text())
+            b = int(self.ui.EulerTheoremBEditor.text())
+            p = int(self.ui.EulerTheoremPEditor.text())
+            e = EulerTheorem.EulerTheorem(a, b, p)
+            self.Display(e)
+        else:
+            ErrorMessageBox("所需的文本框未填写或包含非数字")
 
     def CRTInit(self):
-        self.ui.CRTRemainder1.setText("0")
-        self.ui.CRTRemainder2.setText("0")
-        self.ui.CRTRemainder3.setText("0")
-        self.ui.CRTRemainder4.setText("0")
-        self.ui.CRTRemainder5.setText("0")
-        self.ui.CRTMod1.setText("1")
-        self.ui.CRTMod2.setText("1")
-        self.ui.CRTMod3.setText("1")
-        self.ui.CRTMod4.setText("1")
-        self.ui.CRTMod5.setText("1")
+        self.ui.CRTRemainder1.setText("-1")
+        self.ui.CRTRemainder2.setText("-1")
+        self.ui.CRTRemainder3.setText("-1")
+        self.ui.CRTRemainder4.setText("-1")
+        self.ui.CRTRemainder5.setText("-1")
+        self.ui.CRTMod1.setText("-1")
+        self.ui.CRTMod2.setText("-1")
+        self.ui.CRTMod3.setText("-1")
+        self.ui.CRTMod4.setText("-1")
+        self.ui.CRTMod5.setText("-1")
         self.ui.CRTCalculateButton.clicked.connect(self.CRTCalculateHandle)
 
     def CRTCalculateHandle(self):

@@ -3,6 +3,7 @@ Author: AlwaysStudent
 PythonVersion: 3.7
 """
 from pkg import interface
+from pkg import PowerMod
 import math
 
 
@@ -35,7 +36,13 @@ class EulerTheorem(interface.Process, interface.Value):
         p = self.p
         fp = self.fp
         b = b % fp
-        return a ** b % p
+        return PowerMod.PowerMod(a, b, p).value()
+
+
+def check(e):
+    if e.p == -1:
+        return False
+    return True
 
 
 def f(p):

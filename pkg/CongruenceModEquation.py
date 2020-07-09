@@ -23,6 +23,8 @@ class CongruenceModEquation(interface.Value, interface.Process):
         result = "$$ \\begin{aligned} "
         if self.num != 1:
             result += "&\\because (" + ", ".join([str(self.a), str(self.b), str(self.m)]) + ") = " + str(self.num) + "\\\\ &\\therefore"
+        else:
+            result += "&\\because"
         result += "{" + str(self.a) + "} {x} \;\equiv\; {" + str(self.b) + "}\;mod\;{" + str(self.m) + "} \\\\"
         a = self.a // self.num
         b = self.b // self.num
@@ -32,13 +34,15 @@ class CongruenceModEquation(interface.Value, interface.Process):
         result += temp.process()
         t, x, _ = temp.value()
         if t != 1:
-            result += "$$ \\begin{aligned} \\because (" + str(a) + ", " + str(m) + ") \\not= 1 \\\\ \\therefore No Solution \\end{aligned} $$"
+            result += "$$ \\begin{aligned} \\because (" + str(a) + ", " + str(m) + ") \\not= 1 \\\\ \\therefore No\;Solution \\end{aligned} $$"
             return result
         else:
             b = x * b % m
-            result += "$$ \\begin{aligned} \\therefore {x} \;&\equiv\; {" + str(b) + "}\;mod\;{" + str(m) + "} \\\\ \\therefore  "
-        for i in range(self.num):
-            result += "{x} \;&\equiv\; {" + str(b + i * m) + "}\;mod\;{" + str(self.m) + "} \\\\"
+            result += "$$ \\begin{aligned} \\therefore {x} \;&\equiv\; {" + str(b) + "}\;mod\;{" + str(m) + "} \\\\ "
+        if self.num != 1:
+            result += "\\therefore"
+            for i in range(self.num):
+                result += "{x} \;&\equiv\; {" + str(b + i * m) + "}\;mod\;{" + str(self.m) + "} \\\\"
         return result + "\\end{aligned} $$"
 
     def value(self):
@@ -57,6 +61,12 @@ class CongruenceModEquation(interface.Value, interface.Process):
         for i in range(self.num):
             result.append(b + i * m)
         return result
+
+
+def check(e):
+    if e.num == -1:
+        return False
+    return True
 
 
 def main():
