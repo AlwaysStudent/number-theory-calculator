@@ -2,11 +2,11 @@
 Author: AlwaysStudent
 PythonVersion: 3.7
 """
-import Interface
+from pkg import interface
 import math
 
 
-class EulerTheorem(Interface.Process, Interface.Value):
+class EulerTheorem(interface.Process, interface.Value):
     def __init__(self, a, b, p):
         self.a = a
         self.b = b

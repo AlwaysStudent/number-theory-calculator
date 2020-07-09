@@ -2,10 +2,10 @@
 Author: AlwaysStudent
 PythonVersion: 3.7
 """
-import Interaface
+from pkg import interface
 
 
-class ECC(Interaface.Value, Interaface.Process):
+class ECC(interface.Value, interface.Process):
     def __init__(self):
         pass
 

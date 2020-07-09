@@ -2,10 +2,10 @@
 Author: AlwaysStudent
 PythonVersion: 3.7
 """
-import Interface
+from pkg import interface
 
 
-class PowerMod(Interface.Process, Interface.Value):
+class PowerMod(interface.Process, interface.Value):
 	def __init__(self, a, b, p):
 		self.a = a
 		self.b = b

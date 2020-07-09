@@ -2,11 +2,11 @@
 Author: AlwaysStudent
 PythonVersion: 3.7
 """
-import Interface
-import ExtendedEuclidean
+from pkg import interface
+from pkg import ExtendedEuclidean
 
 
-class CRT(Interface.Process, Interface.Value):
+class CRT(interface.Process, interface.Value):
     def __init__(self, remainder, mod):
         self.remainder = remainder
         self.mod = mod
@@ -20,10 +20,10 @@ class CRT(Interface.Process, Interface.Value):
         m = 1
         _M_ = []
         _InvM_ = []
+        result += " \\times ".join([("{" + str(k) + "}") for k in self.mod])
         for i in range(self.length):
-            result += " \\times ".join([("{" + str(k) + "}") for k in self.mod])
             m *= self.mod[i]
-        result += "\\\\"
+        result += " = "+str(m)+"\\\\"
 
         for i in range(self.length):
             temp = 1
@@ -33,7 +33,7 @@ class CRT(Interface.Process, Interface.Value):
                 if self.mod[i] != self.mod[j]:
                     temp *= self.mod[j]
                     temp_list.append(self.mod[j])
-                result += " \\times ".join([("{" + str(k) + "}") for k in temp_list])
+            result += " \\times ".join([("{" + str(k) + "}") for k in temp_list])
             result += " = {" + str(temp) + "} \\\\"
             _M_.append(temp)
         result += "\\end{aligned} $$"
@@ -46,7 +46,7 @@ class CRT(Interface.Process, Interface.Value):
             result += "$$ \\therefore M_{" + str(i + 1) + "}^{'} = {" + str(_InvM_[i]) + "} $$"
 
         value = 0
-        result += "$$ \\begin{aligned} {x} &\equiv \sum_{i=1}^{" + str(self.length) + "} {{M}_{i}\cdot{M}_{i}^{'}\cdot{b}_{i}}\; mod \; {" + str(m) + "} \\\\ &\equiv ("
+        result += "$$ \\begin{aligned} {x} &\equiv \sum_{i=1}^{" + str(self.length) + "} {{M}_{i}\cdot{M}_{i}^{'}\cdot{b}_{i}}\; mod \; {m} \\\\ &\equiv ("
         for i in range(self.length):
             result += "{" + str(_InvM_[i]) + "} \\times {" + str(_M_[i]) + "} \\times {" + str(self.remainder[i]) + "} "
             if i != self.length - 1:

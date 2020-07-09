@@ -6,6 +6,9 @@ from main_ui import *
 import sys
 import random
 from pkg import ExtendedEuclidean
+from pkg import PowerMod
+from pkg import Jacobi
+from pkg import CRT
 
 
 class MainWindow(QMainWindow):
@@ -13,6 +16,123 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ExtendedEuclideanInit()
+        self.PowerModInit()
+        self.JacobiInit()
+        self.CRTInit()
+
+    def CRTInit(self):
+        self.ui.CRTRemainder1.setText("0")
+        self.ui.CRTRemainder2.setText("0")
+        self.ui.CRTRemainder3.setText("0")
+        self.ui.CRTRemainder4.setText("0")
+        self.ui.CRTRemainder5.setText("0")
+        self.ui.CRTMod1.setText("1")
+        self.ui.CRTMod2.setText("1")
+        self.ui.CRTMod3.setText("1")
+        self.ui.CRTMod4.setText("1")
+        self.ui.CRTMod5.setText("1")
+        self.ui.CRTCalculateButton.clicked.connect(self.CRTCalculateHandle)
+
+    def CRTCalculateHandle(self):
+        remainder = []
+        mod = []
+        if self.ui.CRTRemainder1.text().isdigit() and self.ui.CRTMod1.text().isdigit():
+            if self.ui.CRTRemainder1.text() != "-1" and self.ui.CRTMod1.text() != "-1":
+                remainder.append(int(self.ui.CRTRemainder1.text()))
+                mod.append(int(self.ui.CRTMod1.text()))
+        if self.ui.CRTRemainder2.text().isdigit() and self.ui.CRTMod2.text().isdigit():
+            if self.ui.CRTRemainder2.text() != "-1" and self.ui.CRTMod2.text() != "-1":
+                remainder.append(int(self.ui.CRTRemainder2.text()))
+                mod.append(int(self.ui.CRTMod2.text()))
+        if self.ui.CRTRemainder3.text().isdigit() and self.ui.CRTMod3.text().isdigit():
+            if self.ui.CRTRemainder3.text() != "-1" and self.ui.CRTMod3.text() != "-1":
+                remainder.append(int(self.ui.CRTRemainder3.text()))
+                mod.append(int(self.ui.CRTMod3.text()))
+        if self.ui.CRTRemainder4.text().isdigit() and self.ui.CRTMod4.text().isdigit():
+            if self.ui.CRTRemainder4.text() != "-1" and self.ui.CRTMod4.text() != "-1":
+                remainder.append(int(self.ui.CRTRemainder4.text()))
+                mod.append(int(self.ui.CRTMod4.text()))
+        if self.ui.CRTRemainder5.text().isdigit() and self.ui.CRTMod5.text().isdigit():
+            if self.ui.CRTRemainder5.text() != "-1" and self.ui.CRTMod5.text() != "-1":
+                remainder.append(int(self.ui.CRTRemainder5.text()))
+                mod.append(int(self.ui.CRTMod5.text()))
+        if CRT.judge_mod(mod):
+            e = CRT.CRT(remainder, mod)
+            self.Display(e)
+        else:
+            ErrorText = "模数不互素"
+            ErrorMessageBox(ErrorText)
+
+    def JacobiInit(self):
+        self.ui.JacobiEditorMinA.setText("200")
+        self.ui.JacobiEditorMinM.setText("199")
+        self.ui.JacobiEditorMaxA.setText("1000")
+        self.ui.JacobiEditorMaxM.setText("1001")
+        self.ui.JacobiLegendreCheckBox.setChecked(True)
+        self.JacobiRandomHandle()
+        self.ui.JacobiRandomPushButton.clicked.connect(self.JacobiRandomHandle)
+        self.ui.JacobiCalculatePushButton.clicked.connect(self.JacobiCalculateHandle)
+
+    def JacobiRandomHandle(self):
+        if self.ui.JacobiEditorMaxA.text().isdigit() and \
+                self.ui.JacobiEditorMaxM.text().isdigit() and \
+                self.ui.JacobiEditorMinA.text().isdigit() and \
+                self.ui.JacobiEditorMinM.text().isdigit():
+            MaxA = int(self.ui.JacobiEditorMaxA.text())
+            MinA = int(self.ui.JacobiEditorMinA.text())
+            MaxM = int(self.ui.JacobiEditorMaxM.text())
+            MinM = int(self.ui.JacobiEditorMinM.text())
+            A = random.randrange(MinA, MaxA)
+            M = random.randrange(MinM, MaxM)
+            if self.ui.JacobiLegendreCheckBox.isChecked():
+                e = Jacobi.Jacobi(A, M)
+                while not Jacobi.is_Legendre(e):
+                    A = random.randrange(MinA, MaxA)
+                    M = random.randrange(MinM, MaxM, 2)
+                    e = Jacobi.Jacobi(A, M)
+            self.ui.JacobiEditorA.setText(str(A))
+            self.ui.JacobiEditorM.setText(str(M))
+        else:
+            ErrorText = "所需的文本框未填写或包含非数字"
+            ErrorMessageBox(ErrorText)
+
+    def JacobiCalculateHandle(self):
+        if self.ui.JacobiEditorA.text().isdigit() and self.ui.JacobiEditorM.text().isdigit():
+            a = int(self.ui.JacobiEditorA.text())
+            m = int(self.ui.JacobiEditorM.text())
+            e = Jacobi.Jacobi(a, m)
+            if Jacobi.is_Legendre(e):
+                self.ui.JacobiLegendreCheckBox.setChecked(True)
+            else:
+                self.ui.JacobiLegendreCheckBox.setChecked(False)
+            self.Display(e)
+
+    def PowerModInit(self):
+        self.PowerModRandomHandle()
+        self.ui.PowerModRandomButton.clicked.connect(self.PowerModRandomHandle)
+        self.ui.PowerModCalculateButton.clicked.connect(self.PowerModCalculateHandle)
+
+    def PowerModRandomHandle(self):
+        self.ui.PowerModA.setText(str(random.randint(20, 100)))
+        self.ui.PowerModB.setText(str(random.randint(50, 100)))
+        self.ui.PowerModP.setText(str(random.randint(50, 100)))
+
+    def PowerModCalculateHandle(self):
+        if self.ui.PowerModA.text().isdigit() and \
+                self.ui.PowerModB.text().isdigit() and \
+                self.ui.PowerModP.text().isdigit():
+            a = int(self.ui.PowerModA.text())
+            b = int(self.ui.PowerModB.text())
+            p = int(self.ui.PowerModP.text())
+            e = PowerMod.PowerMod(a, b, p)
+            self.Display(e)
+        else:
+            ErrorText = "所需的文本框未填写或包含非数字"
+            ErrorMessageBox(ErrorText)
+
+
+    def ExtendedEuclideanInit(self):
         self.ui.ExtendedEuclideanMaxAEditer.setText("200")
         self.ui.ExtendedEuclideanMaxBEditer.setText("200")
         self.ui.ExtendedEuclideanMinAEditer.setText("50")
@@ -54,20 +174,26 @@ class MainWindow(QMainWindow):
             b = int(self.ui.ExtendedEuclideanBEditer.text())
             e = ExtendedEuclidean.ExtendedEuclidean(a, b)
         else:
-            message_box = QMessageBox()
-            message_box.setWindowTitle("错误")
-            message_box.setText("[错误] 所需的文本框未填写或包含非数字")
-            message_box.exec_()
-        self.ExtendedEuclideanDisplay(e)
+            ErrorText = "所需的文本框未填写或包含非数字"
+            ErrorMessageBox(ErrorText)
+        self.Display(e)
 
-    def ExtendedEuclideanDisplay(self, e):
-        with open("ExtendedEuclidean.html", "w") as f1:
+    def Display(self, e):
+        if not e:
+            return
+        with open("temporary.html", "w") as f1:
             with open("index.html", "r") as f2:
                 index_text = f2.read()
                 index_text = index_text.format(e.process())
                 f1.write(index_text)
-        self.ui.WebView.load(QUrl("file:///ExtendedEuclidean.html"))
+        self.ui.WebView.load(QUrl("file:///temporary.html"))
 
+
+def ErrorMessageBox(title):
+    message_box = QMessageBox()
+    message_box.setWindowTitle("Error")
+    message_box.setText("[错误] %s" % title)
+    message_box.exec_()
 
 
 def main():

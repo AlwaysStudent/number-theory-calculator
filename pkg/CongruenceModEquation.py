@@ -36,7 +36,7 @@ class CongruenceModEquation(interface.Value, interface.Process):
             return result
         else:
             b = x * b % m
-            result += "$$ \\begin{aligned} \\therefore {x} \;&\equiv\; {" + str(b) + "}\;mod\;{" + str(m) + "} \\\\ \\end{aligned} $$ $$\\begin{aligned}\\therefore  "
+            result += "$$ \\begin{aligned} \\therefore {x} \;&\equiv\; {" + str(b) + "}\;mod\;{" + str(m) + "} \\\\ \\therefore  "
         for i in range(self.num):
             result += "{x} \;&\equiv\; {" + str(b + i * m) + "}\;mod\;{" + str(self.m) + "} \\\\"
         return result + "\\end{aligned} $$"
