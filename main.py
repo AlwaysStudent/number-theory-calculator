@@ -3,6 +3,7 @@ Author: AlwaysStudent
 PythonVersion: 3.7
 """
 from main_ui import *
+from PySide2 import QtWebEngineWidgets
 import sys
 import random
 from pkg import ExtendedEuclidean
@@ -11,6 +12,7 @@ from pkg import Jacobi
 from pkg import CRT
 from pkg import EulerTheorem
 from pkg import CongruenceModEquation
+from pkg import RSA
 
 
 class MainWindow(QMainWindow):
@@ -18,13 +20,40 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.WebView.page().settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.ShowScrollBars, True)
+        self.RSAInit()
         self.CongruenceModEquationInit()
         self.EulerTheoremInit()
         self.CRTInit()
         self.JacobiInit()
         self.PowerModInit()
         self.ExtendedEuclideanInit()
-        self.ui.EulerTheorem.setFocus()
+        self.RSAObject = None
+
+    def RSAInit(self):
+        self.ui.RSABitLenEditor.setText("200")
+        self.ui.RSAMethedComboBox.setCurrentIndex(0)
+        self.ui.RSAPlaintextEdit.setText("abcdefghijklmnopqrstuvwxyz")
+        self.ui.RSAGenerateButton.clicked.connect(self.RSAGenerateKey)
+        self.ui.RSACryptoButton.clicked.connect(self.RSACryptoText)
+
+    def RSAGenerateKey(self):
+        if self.ui.RSABitLenEditor.text().isdigit():
+            bit_len = int(self.ui.RSABitLenEditor.text())
+            mode = self.ui.RSAMethedComboBox.currentText()
+            self.RSAObject = RSA.RSA(bit_len, mode)
+            self.Display(self.RSAObject)
+        else:
+            ErrorMessageBox("位数缺失或为非数字")
+
+    def RSACryptoText(self):
+        plain_text = self.ui.RSAPlaintextEdit.toPlainText()
+        crypto_text, result_text = self.RSAObject.encrypto(plain_text)
+        _, temp_text = self.RSAObject.decrypto(crypto_text)
+        result = result_text + temp_text
+        self.ui.RSACryptotextEdit.setText(crypto_text)
+        self.Display(result)
+
 
     def CongruenceModEquationInit(self):
         self.ui.CongruenceModEquationNumEditor.setText("1")
@@ -258,7 +287,10 @@ class MainWindow(QMainWindow):
         with open("temporary.html", "w") as f1:
             with open("index.html", "r") as f2:
                 index_text = f2.read()
-                index_text = index_text.format(e.process())
+                if type(e) == type(""):
+                    index_text = index_text.format(e)
+                else:
+                    index_text = index_text.format(e.process())
                 f1.write(index_text)
         self.ui.WebView.load(QUrl("file:///temporary.html"))
 

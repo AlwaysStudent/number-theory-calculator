@@ -4,6 +4,7 @@ PythonVersion: 3.7
 """
 import random
 import math
+import base64
 from pkg import interface
 from pkg import PowerMod
 from pkg import ExtendedEuclidean
@@ -55,7 +56,7 @@ class PrivateKey:
         return True
 
 
-class RSA(interface.Process, interface.Value, interface.Encode, interface.Decode):
+class RSA(interface.Process, interface.Value, interface.Encrypto, interface.Decrypto):
     def __init__(self, bit_len, mode='SS'):
         self.public_key = PublicKey()
         self.private_key = PrivateKey()
@@ -63,13 +64,19 @@ class RSA(interface.Process, interface.Value, interface.Encode, interface.Decode
         self.mode = mode
 
     def process(self):
-        result = "$$ \\begin{aligned} "
+        result = "$$ \\begin{aligned} & guess\;p \\\\"
         prime_factory = GeneratePrimeFactory(self.bit_len, self.mode, 40)
-        p = prime_factory.generate_prime()
-        q = prime_factory.generate_prime()
+        p, result_p = prime_factory.generate_prime()
+        q, result_q = prime_factory.generate_prime()
         n = p * q
         phi_n = (p - 1) * (q - 1)
-        result += "& random\;prime\;{p} = {" + str(p) + "} \\\\"
+        for i in range(len(result_p)):
+            result += "&p = {" + str(result_p[i]) + "} \\\\"
+        result += "& guess\;q \\\\"
+        for i in range(len(result_q)):
+            result += "&q = {" + str(result_q[i]) + "} \\\\"
+        result += "\\end{aligned} $$"
+        result += "$$ \\begin{aligned} & random\;prime\;{p} = {" + str(p) + "} \\\\"
         result += "& random\;prime\;{q} = {" + str(q) + "} \\\\"
         result += "& {n} = {p} \\times {q} = {" + str(p) + "} \\times {" + str(q) + "} = {" + str(n) + "} \\\\"
         result += "& \\varphi({n}) = (p - 1)(q - 1) = ({" + str(p) + "} - 1)({" + str(q) + "} - 1) = {" + str(phi_n) + "} \\\\"
@@ -92,9 +99,9 @@ class RSA(interface.Process, interface.Value, interface.Encode, interface.Decode
         self.private_key.set_d(d)
         self.private_key.set_p(p)
         self.private_key.set_q(q)
-        result += "& calculate\; d\; which\; makes\; ed \\equiv {1} \;mod\;\\varphi(n) \\\\ \\end{aligned} $$"
-        result += t.process()
-        result += "$$ \\begin{aligned} & \\therefore d = " + str(d) + "\\\\"
+        result += "& calculate\; d\; which\; makes\; ed \\equiv {1} \;mod\;\\varphi(n) \\\\ \\end{aligned} $$ "
+        # result += t.process()
+        result += " $$ \\begin{aligned} & \\therefore d = " + str(d) + "\\\\"
         result += "& \\therefore PublicKey:(n, e) = (" + str(self.public_key.n) + ", " + str(self.public_key.e) + ") \\\\"
         result += "& \\therefore PrivateKey:(PublicKey(n, e), p, q, d) = ((" + str(self.private_key.public_key.n) + ", "
         result += str(self.private_key.public_key.e) + "), " + str(self.private_key.p) + ", " + str(self.private_key.q)
@@ -104,11 +111,8 @@ class RSA(interface.Process, interface.Value, interface.Encode, interface.Decode
 
     def value(self):
         prime_factory = GeneratePrimeFactory(self.bit_len, self.mode, 40)
-        p = prime_factory.generate_prime()
-        q = prime_factory.generate_prime()
-        while p == q:
-            p = prime_factory.generate_prime()
-            q = prime_factory.generate_prime()
+        p, result_p = prime_factory.generate_prime()
+        q, result_q = prime_factory.generate_prime()
         n = p * q
         phi_n = (p - 1) * (q - 1)
         while True:
@@ -141,29 +145,46 @@ class RSA(interface.Process, interface.Value, interface.Encode, interface.Decode
         except AssertionError:
             raise ValueError("RSA init fail!")
 
-    def encode(self, plain_text):
+    def encrypto(self, plain_text):
         self.check()
-        plain_text_num = int(''.join([add_zero(bin(ord(i)).replace("0b", "")) for i in plain_text]), 2)
+        result = "$$ \\begin{aligned} "
+        result += "& PublicKey:(n, e) = (" + str(self.public_key.n) + ", " + str(self.public_key.e) + ") \\\\"
+        result += "& PrivateKey:(PublicKey(n, e), p, q, d) = ((" + str(self.private_key.public_key.n) + ", "
+        result += str(self.private_key.public_key.e) + "), " + str(self.private_key.p) + ", " + str(self.private_key.q)
+        result += ", " + str(self.private_key.d) + ") \\\\ \\end{aligned} $$"
+        result += "$$ \\begin{aligned} &plain \;text:\;" + plain_text + r" \\ & \xrightarrow{base16encode}\;"
+        plain_text_num = base64.b16encode(plain_text.encode("utf-8"))
+        result += plain_text_num.decode("utf-8") + r"\\"
+        plain_text_num = int(plain_text_num, 16)
+        result += r"& \xrightarrow{int\;by\;hex} {" + str(plain_text_num) + "} \\\\"
         t = PowerMod.PowerMod(plain_text_num, self.public_key.e, self.public_key.n)
-        return t.value()
+        crypto_text = hex(t.value()).replace("0x", "")
+        result += r"& \xrightarrow{encrypto}\; {" + str(plain_text_num) + "}^{" + str(self.public_key.e) + "}\;mod\;{"\
+                  + str(self.public_key.n) + "} \\\\"
+        result += r"& \rightarrow crypto number:" + str(t.value()) + r"\\"
+        result += r"& \xrightarrow{encode} crypto text:" + crypto_text + r"\\ \end{aligned} $$"
+        return crypto_text, result
 
-    def decode(self, crypto_text):
+    def decrypto(self, crypto_text):
         self.check()
-        t = PowerMod.PowerMod(crypto_text, self.private_key.d, self.private_key.public_key.n)
-        qqq = t.value()
-        plain_text_num_1 = bin(qqq).replace("0b", "")[::-1]
-        temp = []
-        if len(plain_text_num_1) % 8 == 0:
-            length = len(plain_text_num_1) // 8
-        else:
-            length = len(plain_text_num_1) // 8 + 1
-        for i in range(length):
-            temp.append(plain_text_num_1[i * 8:i * 8 + 8])
-        l = []
-        for i in temp:
-            l.append(chr(int(i[::-1], 2)))
-        plain_text = "".join(l[::-1])
-        return plain_text
+        result = "$$ \\begin{aligned} "
+        result += "& PublicKey:(n, e) = (" + str(self.public_key.n) + ", " + str(
+            self.public_key.e) + ") \\\\"
+        result += "& PrivateKey:(PublicKey(n, e), p, q, d) = ((" + str(self.private_key.public_key.n) + ", "
+        result += str(self.private_key.public_key.e) + "), " + str(self.private_key.p) + ", " + str(self.private_key.q)
+        result += ", " + str(self.private_key.d) + ") \\\\ \\end{aligned} $$"
+        result += "$$ \\begin{aligned} & crypto \;text: \;" + crypto_text + r"\\ & \xrightarrow{decode}\;"
+        crypto_num = int(crypto_text, 16)
+        result += "{" + str(crypto_num) + r"} \\ & \xrightarrow{decrypto}\;"
+        t = PowerMod.PowerMod(crypto_num, self.private_key.d, self.private_key.public_key.n)
+        result += "{" + str(crypto_num) + "}^{" + str(self.private_key.d) + "}\;mod\;{" + str(self.private_key.public_key.n) + "} \\\\"
+        temp = t.value()
+        result += r"& \rightarrow {" + str(temp) + "} \\\\"
+        plain_text = hex(temp).replace("0x", "")
+        result += "& \\xrightarrow{hex\;by\;int} {" + plain_text + "} \\\\"
+        plain_text = base64.b16decode(plain_text.upper().encode("utf-8")).decode("utf-8")
+        result += r"& \xrightarrow{base16decode} {" + plain_text + "} \\\\ \\end{aligned} $$"
+        return plain_text, result
 
 
 class GeneratePrimeFactory:
@@ -172,45 +193,16 @@ class GeneratePrimeFactory:
         self.mode = mode
         self.times = times
 
-    def primality_test(self, n):
-        # test whether n is a prime number or not
-        small_prime_list = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
-                            71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149,
-                            151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229,
-                            233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313,
-                            317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409,
-                            419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499,
-                            503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601,
-                            607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691,
-                            701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809,
-                            811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907,
-                            911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997, 1009, 1013,
-                            1019, 1021, 1031, 1033, 1039, 1049, 1051, 1061, 1063, 1069, 1087, 1091, 1093,
-                            1097, 1103, 1109, 1117, 1123, 1129, 1151, 1153, 1163, 1171, 1181, 1187, 1193,
-                            1201, 1213, 1217, 1223, 1229, 1231, 1237, 1249, 1259, 1277, 1279, 1283, 1289,
-                            1291, 1297, 1301, 1303, 1307, 1319, 1321, 1327, 1361, 1367, 1373, 1381, 1399,
-                            1409, 1423, 1427, 1429, 1433, 1439, 1447, 1451, 1453, 1459, 1471, 1481, 1483,
-                            1487, 1489, 1493, 1499, 1511, 1523, 1531, 1543, 1549, 1553, 1559, 1567, 1571,
-                            1579, 1583, 1597, 1601, 1607, 1609, 1613, 1619, 1621, 1627, 1637, 1657, 1663,
-                            1667, 1669, 1693, 1697, 1699, 1709, 1721, 1723, 1733, 1741, 1747, 1753, 1759,
-                            1777, 1783, 1787, 1789, 1801, 1811, 1823, 1831, 1847, 1861, 1867, 1871, 1873,
-                            1877, 1879, 1889, 1901, 1907, 1913, 1931, 1933, 1949, 1951, 1973, 1979, 1987,
-                            1993, 1997, 1999]
-        for prime in small_prime_list:
-            if n % prime == 0:
-                return False
-        return True
-
     def generate_prime(self):
         g = generate_rand_odd(self.bit_len)
-        while not self.primality_test(g):
-            if self.mode == "FM":
-                g = generate_prime_by_fermat(self.bit_len, self.times)
-            elif self.mode == "MR":
-                g = generate_prime_by_MR(self.bit_len, self.times)
-            elif self.mode == "SS":
-                g = generate_prime_by_SS(self.bit_len, self.times)
-        return g
+        result = []
+        if self.mode == "FM":
+            g, result = generate_prime_by_fermat(self.bit_len, self.times)
+        elif self.mode == "MR":
+            g, result = generate_prime_by_MR(self.bit_len, self.times)
+        elif self.mode == "SS":
+            g, result = generate_prime_by_SS(self.bit_len, self.times)
+        return g, result
 
 
 def generate_rand_odd(bit_len):
@@ -267,10 +259,13 @@ times是测试次数,是一个正整数，推荐30-100
 
 
 def generate_prime_by_fermat(bitlen, times):
+    result = []
     while True:
         guessp = generate_rand_odd(bitlen)
-        if many_fermat_test(guessp, times):
-            return guessp
+        result.append(guessp)
+        if primality_test(guessp):
+            if many_fermat_test(guessp, times):
+                return guessp, result
         else:
             continue
 
@@ -344,10 +339,13 @@ times是测试次数，一个正整数，推荐30-100
 
 
 def generate_prime_by_MR(bitlen, times):
+    result = []
     while True:
         guessp = generate_rand_odd(bitlen)
-        if many_MR_test(guessp, times):
-            return guessp
+        result.append(guessp)
+        if primality_test(guessp):
+            if many_MR_test(guessp, times):
+                return guessp, result
         else:
             continue
 
@@ -396,25 +394,56 @@ times是一个正整数int，推荐30-100
 
 
 def generate_prime_by_SS(bitlen, times):
+    result = []
     while True:
         guessp = generate_rand_odd(bitlen)
-        if many_SS_test(guessp, times):
-            return guessp
+        result.append(guessp)
+        if primality_test(guessp):
+            if many_SS_test(guessp, times):
+                return guessp, result
         else:
             continue
 
 
-def add_zero(bin_text):
-    return "0" * (8 - len(bin_text)) + bin_text
+def primality_test(n):
+        # test whether n is a prime number or not
+    small_prime_list = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
+                        71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149,
+                        151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229,
+                        233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313,
+                        317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409,
+                        419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499,
+                        503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601,
+                        607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691,
+                        701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809,
+                        811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907,
+                        911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997, 1009, 1013,
+                        1019, 1021, 1031, 1033, 1039, 1049, 1051, 1061, 1063, 1069, 1087, 1091, 1093,
+                        1097, 1103, 1109, 1117, 1123, 1129, 1151, 1153, 1163, 1171, 1181, 1187, 1193,
+                        1201, 1213, 1217, 1223, 1229, 1231, 1237, 1249, 1259, 1277, 1279, 1283, 1289,
+                        1291, 1297, 1301, 1303, 1307, 1319, 1321, 1327, 1361, 1367, 1373, 1381, 1399,
+                        1409, 1423, 1427, 1429, 1433, 1439, 1447, 1451, 1453, 1459, 1471, 1481, 1483,
+                        1487, 1489, 1493, 1499, 1511, 1523, 1531, 1543, 1549, 1553, 1559, 1567, 1571,
+                        1579, 1583, 1597, 1601, 1607, 1609, 1613, 1619, 1621, 1627, 1637, 1657, 1663,
+                        1667, 1669, 1693, 1697, 1699, 1709, 1721, 1723, 1733, 1741, 1747, 1753, 1759,
+                        1777, 1783, 1787, 1789, 1801, 1811, 1823, 1831, 1847, 1861, 1867, 1871, 1873,
+                        1877, 1879, 1889, 1901, 1907, 1913, 1931, 1933, 1949, 1951, 1973, 1979, 1987,
+                        1993, 1997, 1999]
+    for prime in small_prime_list:
+        if n % prime == 0:
+            return False
+    return True
 
 
 def main():
-    r = RSA(20)
+    r = RSA(400)
     print(r.process())
-    x = r.encode("qwe")
+    x, x1 = r.encrypto("abcdefghijklmnopqrstuvwxyz")
     print(x)
-    y = r.decode(x)
+    print(x1)
+    y, y1 = r.decrypto(x)
     print(y)
+    print(y1)
 
 
 if __name__ == '__main__':

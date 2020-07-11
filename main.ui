@@ -14,7 +14,7 @@
    <string>数论专用计算平台</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="CongruenceModEquation">
+   <widget class="QTabWidget" name="Tab">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="ExtendedEuclidean">
      <attribute name="title">
@@ -545,7 +545,7 @@
      <attribute name="title">
       <string>欧拉定理</string>
      </attribute>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>2</x>
@@ -633,11 +633,11 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="CongruenceModEquation">
      <attribute name="title">
       <string>线性同余方程</string>
      </attribute>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>1</x>
@@ -746,6 +746,163 @@
       </layout>
      </widget>
     </widget>
+    <widget class="QWidget" name="RSA">
+     <attribute name="title">
+      <string>RSA的生成和计算</string>
+     </attribute>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1001</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_17">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_20">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_17">
+           <item>
+            <widget class="QLabel" name="label_44">
+             <property name="text">
+              <string>RSA模块</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_50">
+             <property name="text">
+              <string>请先生成RSA秘钥后输入明文进行加解密测试</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <item>
+              <widget class="QLabel" name="label_42">
+               <property name="text">
+                <string>生成素数的位数</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="RSABitLenEditor"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_43">
+               <property name="text">
+                <string>生成素数的方法</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="RSAMethedComboBox">
+               <item>
+                <property name="text">
+                 <string>SS</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>MR</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>FM</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="RSAGenerateButton">
+           <property name="text">
+            <string>生成RSA秘钥</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_21">
+         <item>
+          <widget class="QLabel" name="label_49">
+           <property name="text">
+            <string>RSA加解密</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_19">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_16">
+             <item>
+              <widget class="QLabel" name="label_45">
+               <property name="text">
+                <string>明文</string>
+               </property>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignRight">
+              <widget class="QLabel" name="label_46">
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="text">
+                <string>密文</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_15">
+             <item>
+              <widget class="QTextEdit" name="RSAPlaintextEdit"/>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_18">
+               <item>
+                <widget class="QLabel" name="label_47">
+                 <property name="text">
+                  <string>-&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_48">
+                 <property name="text">
+                  <string>&lt;-</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="RSACryptotextEdit"/>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="RSACryptoButton">
+           <property name="text">
+            <string>计算加解密</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </widget>
    <widget class="QWebEngineView" name="WebView" native="true">
     <property name="geometry">
@@ -753,7 +910,7 @@
       <x>-1</x>
       <y>229</y>
       <width>1011</width>
-      <height>641</height>
+      <height>601</height>
      </rect>
     </property>
    </widget>

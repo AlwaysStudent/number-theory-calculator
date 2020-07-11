@@ -25,9 +25,9 @@ class Ui_MainWindow(object):
         MainWindow.resize(1009, 870)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.CongruenceModEquation = QTabWidget(self.centralwidget)
-        self.CongruenceModEquation.setObjectName(u"CongruenceModEquation")
-        self.CongruenceModEquation.setGeometry(QRect(0, 0, 1011, 231))
+        self.Tab = QTabWidget(self.centralwidget)
+        self.Tab.setObjectName(u"Tab")
+        self.Tab.setGeometry(QRect(0, 0, 1011, 231))
         self.ExtendedEuclidean = QWidget()
         self.ExtendedEuclidean.setObjectName(u"ExtendedEuclidean")
         self.layoutWidget = QWidget(self.ExtendedEuclidean)
@@ -131,7 +131,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_5.addLayout(self.gridLayout_4, 0, 1, 1, 1)
 
-        self.CongruenceModEquation.addTab(self.ExtendedEuclidean, "")
+        self.Tab.addTab(self.ExtendedEuclidean, "")
         self.PowerMod = QWidget()
         self.PowerMod.setObjectName(u"PowerMod")
         self.layoutWidget1 = QWidget(self.PowerMod)
@@ -190,7 +190,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addLayout(self.verticalLayout)
 
-        self.CongruenceModEquation.addTab(self.PowerMod, "")
+        self.Tab.addTab(self.PowerMod, "")
         self.Jacobi = QWidget()
         self.Jacobi.setObjectName(u"Jacobi")
         self.layoutWidget2 = QWidget(self.Jacobi)
@@ -333,7 +333,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addLayout(self.verticalLayout_4)
 
-        self.CongruenceModEquation.addTab(self.Jacobi, "")
+        self.Tab.addTab(self.Jacobi, "")
         self.CRT = QWidget()
         self.CRT.setObjectName(u"CRT")
         self.label_29 = QLabel(self.CRT)
@@ -490,35 +490,35 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_6.addLayout(self.verticalLayout_10)
 
-        self.CongruenceModEquation.addTab(self.CRT, "")
+        self.Tab.addTab(self.CRT, "")
         self.EulerTheorem = QWidget()
         self.EulerTheorem.setObjectName(u"EulerTheorem")
-        self.widget = QWidget(self.EulerTheorem)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(2, 3, 1001, 201))
-        self.verticalLayout_12 = QVBoxLayout(self.widget)
+        self.layoutWidget4 = QWidget(self.EulerTheorem)
+        self.layoutWidget4.setObjectName(u"layoutWidget4")
+        self.layoutWidget4.setGeometry(QRect(2, 3, 1001, 201))
+        self.verticalLayout_12 = QVBoxLayout(self.layoutWidget4)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_9 = QHBoxLayout()
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.gridLayout_7 = QGridLayout()
         self.gridLayout_7.setObjectName(u"gridLayout_7")
-        self.label_32 = QLabel(self.widget)
+        self.label_32 = QLabel(self.layoutWidget4)
         self.label_32.setObjectName(u"label_32")
 
         self.gridLayout_7.addWidget(self.label_32, 0, 0, 1, 1)
 
-        self.EulerTheoremAEditor = QLineEdit(self.widget)
+        self.EulerTheoremAEditor = QLineEdit(self.layoutWidget4)
         self.EulerTheoremAEditor.setObjectName(u"EulerTheoremAEditor")
 
         self.gridLayout_7.addWidget(self.EulerTheoremAEditor, 0, 1, 1, 1)
 
-        self.label_33 = QLabel(self.widget)
+        self.label_33 = QLabel(self.layoutWidget4)
         self.label_33.setObjectName(u"label_33")
 
         self.gridLayout_7.addWidget(self.label_33, 1, 0, 1, 1)
 
-        self.EulerTheoremBEditor = QLineEdit(self.widget)
+        self.EulerTheoremBEditor = QLineEdit(self.layoutWidget4)
         self.EulerTheoremBEditor.setObjectName(u"EulerTheoremBEditor")
 
         self.gridLayout_7.addWidget(self.EulerTheoremBEditor, 1, 1, 1, 1)
@@ -528,12 +528,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_7 = QHBoxLayout()
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.label_34 = QLabel(self.widget)
+        self.label_34 = QLabel(self.layoutWidget4)
         self.label_34.setObjectName(u"label_34")
 
         self.horizontalLayout_7.addWidget(self.label_34)
 
-        self.EulerTheoremPEditor = QLineEdit(self.widget)
+        self.EulerTheoremPEditor = QLineEdit(self.layoutWidget4)
         self.EulerTheoremPEditor.setObjectName(u"EulerTheoremPEditor")
 
         self.horizontalLayout_7.addWidget(self.EulerTheoremPEditor)
@@ -546,19 +546,19 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_8 = QHBoxLayout()
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.label_35 = QLabel(self.widget)
+        self.label_35 = QLabel(self.layoutWidget4)
         self.label_35.setObjectName(u"label_35")
 
         self.horizontalLayout_8.addWidget(self.label_35)
 
         self.verticalLayout_11 = QVBoxLayout()
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.EulerTheoremRandomButton = QPushButton(self.widget)
+        self.EulerTheoremRandomButton = QPushButton(self.layoutWidget4)
         self.EulerTheoremRandomButton.setObjectName(u"EulerTheoremRandomButton")
 
         self.verticalLayout_11.addWidget(self.EulerTheoremRandomButton)
 
-        self.EulerTheoremCalculateButton = QPushButton(self.widget)
+        self.EulerTheoremCalculateButton = QPushButton(self.layoutWidget4)
         self.EulerTheoremCalculateButton.setObjectName(u"EulerTheoremCalculateButton")
 
         self.verticalLayout_11.addWidget(self.EulerTheoremCalculateButton)
@@ -569,13 +569,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addLayout(self.horizontalLayout_8)
 
-        self.CongruenceModEquation.addTab(self.EulerTheorem, "")
-        self.tab = QWidget()
-        self.tab.setObjectName(u"tab")
-        self.widget1 = QWidget(self.tab)
-        self.widget1.setObjectName(u"widget1")
-        self.widget1.setGeometry(QRect(1, 1, 1001, 201))
-        self.verticalLayout_16 = QVBoxLayout(self.widget1)
+        self.Tab.addTab(self.EulerTheorem, "")
+        self.CongruenceModEquation = QWidget()
+        self.CongruenceModEquation.setObjectName(u"CongruenceModEquation")
+        self.layoutWidget5 = QWidget(self.CongruenceModEquation)
+        self.layoutWidget5.setObjectName(u"layoutWidget5")
+        self.layoutWidget5.setGeometry(QRect(1, 1, 1001, 201))
+        self.verticalLayout_16 = QVBoxLayout(self.layoutWidget5)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.verticalLayout_16.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_13 = QHBoxLayout()
@@ -584,32 +584,32 @@ class Ui_MainWindow(object):
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
         self.horizontalLayout_10 = QHBoxLayout()
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
-        self.label_38 = QLabel(self.widget1)
+        self.label_38 = QLabel(self.layoutWidget5)
         self.label_38.setObjectName(u"label_38")
 
         self.horizontalLayout_10.addWidget(self.label_38)
 
-        self.CongruenceModEquationAEditor = QLineEdit(self.widget1)
+        self.CongruenceModEquationAEditor = QLineEdit(self.layoutWidget5)
         self.CongruenceModEquationAEditor.setObjectName(u"CongruenceModEquationAEditor")
 
         self.horizontalLayout_10.addWidget(self.CongruenceModEquationAEditor)
 
-        self.label_39 = QLabel(self.widget1)
+        self.label_39 = QLabel(self.layoutWidget5)
         self.label_39.setObjectName(u"label_39")
 
         self.horizontalLayout_10.addWidget(self.label_39)
 
-        self.CongruenceModEquationBEditor = QLineEdit(self.widget1)
+        self.CongruenceModEquationBEditor = QLineEdit(self.layoutWidget5)
         self.CongruenceModEquationBEditor.setObjectName(u"CongruenceModEquationBEditor")
 
         self.horizontalLayout_10.addWidget(self.CongruenceModEquationBEditor)
 
-        self.label_40 = QLabel(self.widget1)
+        self.label_40 = QLabel(self.layoutWidget5)
         self.label_40.setObjectName(u"label_40")
 
         self.horizontalLayout_10.addWidget(self.label_40)
 
-        self.CongruenceModEquationMEditor = QLineEdit(self.widget1)
+        self.CongruenceModEquationMEditor = QLineEdit(self.layoutWidget5)
         self.CongruenceModEquationMEditor.setObjectName(u"CongruenceModEquationMEditor")
 
         self.horizontalLayout_10.addWidget(self.CongruenceModEquationMEditor)
@@ -622,12 +622,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_11 = QHBoxLayout()
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.label_41 = QLabel(self.widget1)
+        self.label_41 = QLabel(self.layoutWidget5)
         self.label_41.setObjectName(u"label_41")
 
         self.horizontalLayout_11.addWidget(self.label_41)
 
-        self.CongruenceModEquationNumEditor = QLineEdit(self.widget1)
+        self.CongruenceModEquationNumEditor = QLineEdit(self.layoutWidget5)
         self.CongruenceModEquationNumEditor.setObjectName(u"CongruenceModEquationNumEditor")
 
         self.horizontalLayout_11.addWidget(self.CongruenceModEquationNumEditor)
@@ -642,12 +642,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
         self.verticalLayout_13 = QVBoxLayout()
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
-        self.label_36 = QLabel(self.widget1)
+        self.label_36 = QLabel(self.layoutWidget5)
         self.label_36.setObjectName(u"label_36")
 
         self.verticalLayout_13.addWidget(self.label_36)
 
-        self.label_37 = QLabel(self.widget1)
+        self.label_37 = QLabel(self.layoutWidget5)
         self.label_37.setObjectName(u"label_37")
 
         self.verticalLayout_13.addWidget(self.label_37)
@@ -657,12 +657,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_14 = QVBoxLayout()
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
-        self.CongruenceModEquationRandomButton = QPushButton(self.widget1)
+        self.CongruenceModEquationRandomButton = QPushButton(self.layoutWidget5)
         self.CongruenceModEquationRandomButton.setObjectName(u"CongruenceModEquationRandomButton")
 
         self.verticalLayout_14.addWidget(self.CongruenceModEquationRandomButton)
 
-        self.CongruenceModEquationCalculateButton = QPushButton(self.widget1)
+        self.CongruenceModEquationCalculateButton = QPushButton(self.layoutWidget5)
         self.CongruenceModEquationCalculateButton.setObjectName(u"CongruenceModEquationCalculateButton")
 
         self.verticalLayout_14.addWidget(self.CongruenceModEquationCalculateButton)
@@ -673,10 +673,138 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_16.addLayout(self.horizontalLayout_12)
 
-        self.CongruenceModEquation.addTab(self.tab, "")
+        self.Tab.addTab(self.CongruenceModEquation, "")
+        self.RSA = QWidget()
+        self.RSA.setObjectName(u"RSA")
+        self.layoutWidget6 = QWidget(self.RSA)
+        self.layoutWidget6.setObjectName(u"layoutWidget6")
+        self.layoutWidget6.setGeometry(QRect(0, 0, 1001, 201))
+        self.horizontalLayout_17 = QHBoxLayout(self.layoutWidget6)
+        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.horizontalLayout_17.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_20 = QVBoxLayout()
+        self.verticalLayout_20.setObjectName(u"verticalLayout_20")
+        self.verticalLayout_17 = QVBoxLayout()
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.label_44 = QLabel(self.layoutWidget6)
+        self.label_44.setObjectName(u"label_44")
+
+        self.verticalLayout_17.addWidget(self.label_44)
+
+        self.label_50 = QLabel(self.layoutWidget6)
+        self.label_50.setObjectName(u"label_50")
+
+        self.verticalLayout_17.addWidget(self.label_50)
+
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.label_42 = QLabel(self.layoutWidget6)
+        self.label_42.setObjectName(u"label_42")
+
+        self.horizontalLayout_14.addWidget(self.label_42)
+
+        self.RSABitLenEditor = QLineEdit(self.layoutWidget6)
+        self.RSABitLenEditor.setObjectName(u"RSABitLenEditor")
+
+        self.horizontalLayout_14.addWidget(self.RSABitLenEditor)
+
+        self.label_43 = QLabel(self.layoutWidget6)
+        self.label_43.setObjectName(u"label_43")
+
+        self.horizontalLayout_14.addWidget(self.label_43)
+
+        self.RSAMethedComboBox = QComboBox(self.layoutWidget6)
+        self.RSAMethedComboBox.addItem("")
+        self.RSAMethedComboBox.addItem("")
+        self.RSAMethedComboBox.addItem("")
+        self.RSAMethedComboBox.setObjectName(u"RSAMethedComboBox")
+
+        self.horizontalLayout_14.addWidget(self.RSAMethedComboBox)
+
+
+        self.verticalLayout_17.addLayout(self.horizontalLayout_14)
+
+
+        self.verticalLayout_20.addLayout(self.verticalLayout_17)
+
+        self.RSAGenerateButton = QPushButton(self.layoutWidget6)
+        self.RSAGenerateButton.setObjectName(u"RSAGenerateButton")
+
+        self.verticalLayout_20.addWidget(self.RSAGenerateButton)
+
+
+        self.horizontalLayout_17.addLayout(self.verticalLayout_20)
+
+        self.verticalLayout_21 = QVBoxLayout()
+        self.verticalLayout_21.setObjectName(u"verticalLayout_21")
+        self.label_49 = QLabel(self.layoutWidget6)
+        self.label_49.setObjectName(u"label_49")
+
+        self.verticalLayout_21.addWidget(self.label_49)
+
+        self.verticalLayout_19 = QVBoxLayout()
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.horizontalLayout_16 = QHBoxLayout()
+        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
+        self.label_45 = QLabel(self.layoutWidget6)
+        self.label_45.setObjectName(u"label_45")
+
+        self.horizontalLayout_16.addWidget(self.label_45)
+
+        self.label_46 = QLabel(self.layoutWidget6)
+        self.label_46.setObjectName(u"label_46")
+        self.label_46.setLayoutDirection(Qt.LeftToRight)
+
+        self.horizontalLayout_16.addWidget(self.label_46, 0, Qt.AlignRight)
+
+
+        self.verticalLayout_19.addLayout(self.horizontalLayout_16)
+
+        self.horizontalLayout_15 = QHBoxLayout()
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.RSAPlaintextEdit = QTextEdit(self.layoutWidget6)
+        self.RSAPlaintextEdit.setObjectName(u"RSAPlaintextEdit")
+
+        self.horizontalLayout_15.addWidget(self.RSAPlaintextEdit)
+
+        self.verticalLayout_18 = QVBoxLayout()
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
+        self.label_47 = QLabel(self.layoutWidget6)
+        self.label_47.setObjectName(u"label_47")
+
+        self.verticalLayout_18.addWidget(self.label_47)
+
+        self.label_48 = QLabel(self.layoutWidget6)
+        self.label_48.setObjectName(u"label_48")
+
+        self.verticalLayout_18.addWidget(self.label_48)
+
+
+        self.horizontalLayout_15.addLayout(self.verticalLayout_18)
+
+        self.RSACryptotextEdit = QTextEdit(self.layoutWidget6)
+        self.RSACryptotextEdit.setObjectName(u"RSACryptotextEdit")
+
+        self.horizontalLayout_15.addWidget(self.RSACryptotextEdit)
+
+
+        self.verticalLayout_19.addLayout(self.horizontalLayout_15)
+
+
+        self.verticalLayout_21.addLayout(self.verticalLayout_19)
+
+        self.RSACryptoButton = QPushButton(self.layoutWidget6)
+        self.RSACryptoButton.setObjectName(u"RSACryptoButton")
+
+        self.verticalLayout_21.addWidget(self.RSACryptoButton)
+
+
+        self.horizontalLayout_17.addLayout(self.verticalLayout_21)
+
+        self.Tab.addTab(self.RSA, "")
         self.WebView = QWebEngineView(self.centralwidget)
         self.WebView.setObjectName(u"WebView")
-        self.WebView.setGeometry(QRect(-1, 229, 1011, 641))
+        self.WebView.setGeometry(QRect(-1, 229, 1011, 601))
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -684,7 +812,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.CongruenceModEquation.setCurrentIndex(5)
+        self.Tab.setCurrentIndex(6)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -701,13 +829,13 @@ class Ui_MainWindow(object):
         self.ExtendedEuclideanCalculateButton.setText(QCoreApplication.translate("MainWindow", u"\u8ba1\u7b97", None))
         self.ExtendedEuclideanRandomButton.setText(QCoreApplication.translate("MainWindow", u"\u968f\u673a", None))
         self.ExtendedEuclidean_1_Button.setText(QCoreApplication.translate("MainWindow", u"\u9006\u5143", None))
-        self.CongruenceModEquation.setTabText(self.CongruenceModEquation.indexOf(self.ExtendedEuclidean), QCoreApplication.translate("MainWindow", u"\u6269\u5c55\u6b27\u51e0\u91cc\u5f97\u7b97\u6cd5", None))
+        self.Tab.setTabText(self.Tab.indexOf(self.ExtendedEuclidean), QCoreApplication.translate("MainWindow", u"\u6269\u5c55\u6b27\u51e0\u91cc\u5f97\u7b97\u6cd5", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"(", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u")^(", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u") mod ", None))
         self.PowerModRandomButton.setText(QCoreApplication.translate("MainWindow", u"\u968f\u673a", None))
         self.PowerModCalculateButton.setText(QCoreApplication.translate("MainWindow", u"\u8ba1\u7b97", None))
-        self.CongruenceModEquation.setTabText(self.CongruenceModEquation.indexOf(self.PowerMod), QCoreApplication.translate("MainWindow", u"\u6a21\u5927\u6570\u5e42\u4e58", None))
+        self.Tab.setTabText(self.Tab.indexOf(self.PowerMod), QCoreApplication.translate("MainWindow", u"\u6a21\u5927\u6570\u5e42\u4e58", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"(", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"a", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"m", None))
@@ -720,7 +848,7 @@ class Ui_MainWindow(object):
         self.JacobiLegendreCheckBox.setText(QCoreApplication.translate("MainWindow", u"\u8981\u6c42\u4e3aLegendre\u7b26\u53f7", None))
         self.JacobiRandomPushButton.setText(QCoreApplication.translate("MainWindow", u"\u968f\u673a", None))
         self.JacobiCalculatePushButton.setText(QCoreApplication.translate("MainWindow", u"\u8ba1\u7b97", None))
-        self.CongruenceModEquation.setTabText(self.CongruenceModEquation.indexOf(self.Jacobi), QCoreApplication.translate("MainWindow", u"Jacobi\u7b26\u53f7", None))
+        self.Tab.setTabText(self.Tab.indexOf(self.Jacobi), QCoreApplication.translate("MainWindow", u"Jacobi\u7b26\u53f7", None))
         self.label_29.setText("")
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"X", None))
         self.label_21.setText(QCoreApplication.translate("MainWindow", u"X", None))
@@ -735,7 +863,7 @@ class Ui_MainWindow(object):
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"\u5982\u679c\u8be5\u884c\u4e0d\u9700\u8981", None))
         self.label_31.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u5728\u524d\u540e\u90fd\u8f93\u5165-1", None))
         self.CRTCalculateButton.setText(QCoreApplication.translate("MainWindow", u"\u8ba1\u7b97", None))
-        self.CongruenceModEquation.setTabText(self.CongruenceModEquation.indexOf(self.CRT), QCoreApplication.translate("MainWindow", u"\u5b59\u5b50\u5b9a\u7406", None))
+        self.Tab.setTabText(self.Tab.indexOf(self.CRT), QCoreApplication.translate("MainWindow", u"\u5b59\u5b50\u5b9a\u7406", None))
         self.label_32.setText(QCoreApplication.translate("MainWindow", u"a", None))
         self.EulerTheoremAEditor.setText("")
         self.label_33.setText(QCoreApplication.translate("MainWindow", u"b", None))
@@ -743,7 +871,7 @@ class Ui_MainWindow(object):
         self.label_35.setText(QCoreApplication.translate("MainWindow", u"\u4f7f\u7528\u6b27\u62c9\u5b9a\u7406\u8ba1\u7b97a^b mod p", None))
         self.EulerTheoremRandomButton.setText(QCoreApplication.translate("MainWindow", u"\u968f\u673a", None))
         self.EulerTheoremCalculateButton.setText(QCoreApplication.translate("MainWindow", u"\u8ba1\u7b97", None))
-        self.CongruenceModEquation.setTabText(self.CongruenceModEquation.indexOf(self.EulerTheorem), QCoreApplication.translate("MainWindow", u"\u6b27\u62c9\u5b9a\u7406", None))
+        self.Tab.setTabText(self.Tab.indexOf(self.EulerTheorem), QCoreApplication.translate("MainWindow", u"\u6b27\u62c9\u5b9a\u7406", None))
         self.label_38.setText(QCoreApplication.translate("MainWindow", u"a", None))
         self.label_39.setText(QCoreApplication.translate("MainWindow", u"b", None))
         self.label_40.setText(QCoreApplication.translate("MainWindow", u"m", None))
@@ -752,6 +880,22 @@ class Ui_MainWindow(object):
         self.label_37.setText(QCoreApplication.translate("MainWindow", u"\u4ece ax=b(mod m) \u8ba1\u7b97\u51fa x=value(mod m)", None))
         self.CongruenceModEquationRandomButton.setText(QCoreApplication.translate("MainWindow", u"\u968f\u673a(\u4e0d\u6539\u53d8\u89e3\u7684\u4e2a\u6570)", None))
         self.CongruenceModEquationCalculateButton.setText(QCoreApplication.translate("MainWindow", u"\u8ba1\u7b97", None))
-        self.CongruenceModEquation.setTabText(self.CongruenceModEquation.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u7ebf\u6027\u540c\u4f59\u65b9\u7a0b", None))
+        self.Tab.setTabText(self.Tab.indexOf(self.CongruenceModEquation), QCoreApplication.translate("MainWindow", u"\u7ebf\u6027\u540c\u4f59\u65b9\u7a0b", None))
+        self.label_44.setText(QCoreApplication.translate("MainWindow", u"RSA\u6a21\u5757", None))
+        self.label_50.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u5148\u751f\u6210RSA\u79d8\u94a5\u540e\u8f93\u5165\u660e\u6587\u8fdb\u884c\u52a0\u89e3\u5bc6\u6d4b\u8bd5", None))
+        self.label_42.setText(QCoreApplication.translate("MainWindow", u"\u751f\u6210\u7d20\u6570\u7684\u4f4d\u6570", None))
+        self.label_43.setText(QCoreApplication.translate("MainWindow", u"\u751f\u6210\u7d20\u6570\u7684\u65b9\u6cd5", None))
+        self.RSAMethedComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"SS", None))
+        self.RSAMethedComboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"MR", None))
+        self.RSAMethedComboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"FM", None))
+
+        self.RSAGenerateButton.setText(QCoreApplication.translate("MainWindow", u"\u751f\u6210RSA\u79d8\u94a5", None))
+        self.label_49.setText(QCoreApplication.translate("MainWindow", u"RSA\u52a0\u89e3\u5bc6", None))
+        self.label_45.setText(QCoreApplication.translate("MainWindow", u"\u660e\u6587", None))
+        self.label_46.setText(QCoreApplication.translate("MainWindow", u"\u5bc6\u6587", None))
+        self.label_47.setText(QCoreApplication.translate("MainWindow", u"->", None))
+        self.label_48.setText(QCoreApplication.translate("MainWindow", u"<-", None))
+        self.RSACryptoButton.setText(QCoreApplication.translate("MainWindow", u"\u8ba1\u7b97\u52a0\u89e3\u5bc6", None))
+        self.Tab.setTabText(self.Tab.indexOf(self.RSA), QCoreApplication.translate("MainWindow", u"RSA\u7684\u751f\u6210\u548c\u8ba1\u7b97", None))
     # retranslateUi
 
