@@ -1,7 +1,3 @@
-"""
-Author: AlwaysStudent
-PythonVersion: 3.7
-"""
 from pkg import interface
 from pkg import PowerMod
 import math
@@ -17,17 +13,53 @@ class EulerTheorem(interface.Process, interface.Value):
         else:
             self.p = -1
 
-    def process(self) ->str:
+    def process(self) -> str:
         a = self.a
         b = self.b
         p = self.p
         fp = self.fp
-        result = "$$ \\begin{aligned} &\\because \\varphi({" + str(p) + "}) = " + str(fp) + "\\\\"
-        result += "&\\therefore {a}^{\\varphi({p})} \equiv {" + str(a) + "}^{" + str(fp) + "}\;mod\;{" + str(p) + "} \\\\ \\end{aligned} $$"
-        result += "$$ \\begin{aligned} {" + str(a) + "}^{" + str(b) + "} &\equiv "
-        result += "{({" + str(a) + "} ^ {" + str(fp) + "})}^{" + str(b // fp) + "} \\times {" + str(a) + "}^{" + str(b % fp) + "}\;mod\;{" + str(p) + "} \\\\"
-        result += "&\equiv {" + str(a) + "}^{" + str(b - b // fp * fp) + "}\;mod\;{" + str(p) + "} \\\\"
-        result += "&\equiv {" + str(a ** (b % fp) % p) + "}\;mod\;{" + str(p) + "} \\\\ \\end{aligned} $$"
+        result = "$$ \\begin{aligned} &\\because \\varphi({" + \
+                 str(p) + \
+                 "}) = " + \
+                 str(fp) + \
+                 "\\\\"
+        result += "&\\therefore {a}^{\\varphi({p})} \equiv {" + \
+                  str(a) + \
+                  "}^{" + \
+                  str(fp) + \
+                  "}\;mod\;{" + \
+                  str(p) + \
+                  "} \\\\ \\end{aligned} $$"
+        result += "$$ \\begin{aligned} {" + \
+                  str(a) + \
+                  "}^{" + \
+                  str(b) + \
+                  "} &\equiv "
+        result += "{({" + \
+                  str(a) + \
+                  "} ^ {" + \
+                  str(fp) + \
+                  "})}^{" + \
+                  str(b // fp) + \
+                  "} \\times {" + \
+                  str(a) + \
+                  "}^{" + \
+                  str(b % fp) + \
+                  "}\;mod\;{" + \
+                  str(p) + \
+                  "} \\\\"
+        result += "&\equiv {" + \
+                  str(a) + \
+                  "}^{" + \
+                  str(b - b // fp * fp) + \
+                  "}\;mod\;{" + \
+                  str(p) + \
+                  "} \\\\"
+        result += "&\equiv {" + \
+                  str(a ** (b % fp) % p) + \
+                  "}\;mod\;{" + \
+                  str(p) + \
+                  "} \\\\ \\end{aligned} $$"
         return result
 
     def value(self):
@@ -61,4 +93,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

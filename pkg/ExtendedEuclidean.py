@@ -1,7 +1,3 @@
-"""
-Author: AlwaysStudent
-PythonVersion: 3.7
-"""
 from pkg import interface
 
 
@@ -20,10 +16,16 @@ class ExtendedEuclidean(interface.Process, interface.Value):
             remainder.append(big % small)
             coefficient.append(big // small)
             big, small = small, big % small
-
         for i in range(len(coefficient)):
-            result += "{" + str(remainder[i]) + "} &= {"+str(coefficient[i])+"} \\times {"+str(remainder[i + 1])+"} + {"+str(remainder[i + 2])+"} \\\\"
-
+            result += "{" + \
+                      str(remainder[i]) + \
+                      "} &= {" + \
+                      str(coefficient[i]) + \
+                      "} \\times {" + \
+                      str(remainder[i + 1]) + \
+                      "} + {" + \
+                      str(remainder[i + 2]) + \
+                      "} \\\\"
         result += " \end{aligned} $$ $$ \\begin{aligned} "
         remainder.pop()
         coefficient.pop()
@@ -34,13 +36,33 @@ class ExtendedEuclidean(interface.Process, interface.Value):
         for i in range(1, len(coefficient)):
             left.append(right[i - 1])
             right.append(left[i] * (-coefficient[i]) + left[i - 1])
-
-        result += "{" + str(remainder[0]) + "}"
+        result += "{" + \
+                  str(remainder[0]) + \
+                  "}"
         for i in range(len(left)):
-            result += " &= ({" + str(left[i]) + "}) \\times {" + str(remainder[i + 2]) + "} + ({" + str(right[i]) + "}) \\times {" + str(remainder[i + 1]) + "} \\\\"
+            result += " &= ({" + \
+                      str(left[i]) + \
+                      "}) \\times {" + \
+                      str(remainder[i + 2]) + \
+                      "} + ({" + \
+                      str(right[i]) + \
+                      "}) \\times {" + \
+                      str(remainder[i + 1]) + \
+                      "} \\\\"
             if i < len(left) - 1:
-                result += " &= ({" + str(left[i]) + "}) \\times {" + str(remainder[i + 2]) + "} + ({" + str(right[i]) + "}) \\times ({"+str(remainder[i + 3])+"} - ({" + str(coefficient[i + 1]) + "}) \\times {"+str(remainder[i + 2])+"}) \\\\"
-
+                result += " &= ({" + \
+                          str(left[i]) + \
+                          "}) \\times {" + \
+                          str(remainder[i + 2]) + \
+                          "} + ({" + \
+                          str(right[i]) + \
+                          "}) \\times ({" + \
+                          str(remainder[i + 3]) + \
+                          "} - ({" + \
+                          str(coefficient[i + 1]) + \
+                          "}) \\times {" + \
+                          str(remainder[i + 2]) + \
+                          "}) \\\\"
         return result + " \end{aligned} $$"
 
     def value(self):
@@ -74,5 +96,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-

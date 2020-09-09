@@ -1,7 +1,3 @@
-"""
-Author: AlwaysStudent
-PythonVersion: 3.7
-"""
 import random
 import math
 import base64
@@ -71,15 +67,35 @@ class RSA(interface.Process, interface.Value, interface.Encrypto, interface.Decr
         n = p * q
         phi_n = (p - 1) * (q - 1)
         for i in range(len(result_p)):
-            result += "&p = {" + str(result_p[i]) + "} \\\\"
+            result += "&p = {" + \
+                      str(result_p[i]) + \
+                      "} \\\\"
         result += "& guess\;q \\\\"
         for i in range(len(result_q)):
-            result += "&q = {" + str(result_q[i]) + "} \\\\"
+            result += "&q = {" + \
+                      str(result_q[i]) + \
+                      "} \\\\"
         result += "\\end{aligned} $$"
-        result += "$$ \\begin{aligned} & random\;prime\;{p} = {" + str(p) + "} \\\\"
-        result += "& random\;prime\;{q} = {" + str(q) + "} \\\\"
-        result += "& {n} = {p} \\times {q} = {" + str(p) + "} \\times {" + str(q) + "} = {" + str(n) + "} \\\\"
-        result += "& \\varphi({n}) = (p - 1)(q - 1) = ({" + str(p) + "} - 1)({" + str(q) + "} - 1) = {" + str(phi_n) + "} \\\\"
+        result += "$$ \\begin{aligned} & random\;prime\;{p} = {" + \
+                  str(p) + \
+                  "} \\\\"
+        result += "& random\;prime\;{q} = {" + \
+                  str(q) + \
+                  "} \\\\"
+        result += "& {n} = {p} \\times {q} = {" + \
+                  str(p) + \
+                  "} \\times {" + \
+                  str(q) + \
+                  "} = {" + \
+                  str(n) + \
+                  "} \\\\"
+        result += "& \\varphi({n}) = (p - 1)(q - 1) = ({" + \
+                  str(p) + \
+                  "} - 1)({" + \
+                  str(q) + \
+                  "} - 1) = {" + \
+                  str(phi_n) + \
+                  "} \\\\"
         while True:
             e = random.randrange(3, phi_n, 1)
             gcd_e_phi_n = math.gcd(phi_n, e)
@@ -87,8 +103,12 @@ class RSA(interface.Process, interface.Value, interface.Encrypto, interface.Decr
                 continue
             else:
                 break
-        result += "& random\;select\;e\;from\;{3}\;to\; " + str(phi_n) + "\; which\; makes\; (e, \\varphi(n)) = 1 \\\\"
-        result += "& e = {" + str(e) + "} \\\\"
+        result += "& random\;select\;e\;from\;{3}\;to\; " + \
+                  str(phi_n) + \
+                  "\; which\; makes\; (e, \\varphi(n)) = 1 \\\\"
+        result += "& e = {" + \
+                  str(e) + \
+                  "} \\\\"
         t = ExtendedEuclidean.ExtendedEuclidean(phi_n, e)
         _, _, d = t.value()
         if d < 0:
@@ -100,12 +120,25 @@ class RSA(interface.Process, interface.Value, interface.Encrypto, interface.Decr
         self.private_key.set_p(p)
         self.private_key.set_q(q)
         result += "& calculate\; d\; which\; makes\; ed \\equiv {1} \;mod\;\\varphi(n) \\\\ \\end{aligned} $$ "
-        # result += t.process()
-        result += " $$ \\begin{aligned} & \\therefore d = " + str(d) + "\\\\"
-        result += "& \\therefore PublicKey:(n, e) = (" + str(self.public_key.n) + ", " + str(self.public_key.e) + ") \\\\"
-        result += "& \\therefore PrivateKey:(PublicKey(n, e), p, q, d) = ((" + str(self.private_key.public_key.n) + ", "
-        result += str(self.private_key.public_key.e) + "), " + str(self.private_key.p) + ", " + str(self.private_key.q)
-        result += ", " + str(self.private_key.d) + ") \\\\ \\end{aligned} $$"
+        result += " $$ \\begin{aligned} & \\therefore d = " + \
+                  str(d) + \
+                  "\\\\"
+        result += "& \\therefore PublicKey:(n, e) = (" + \
+                  str(self.public_key.n) + \
+                  ", " + \
+                  str(self.public_key.e) + \
+                  ") \\\\"
+        result += "& \\therefore PrivateKey:(PublicKey(n, e), p, q, d) = ((" + \
+                  str(self.private_key.public_key.n) + \
+                  ", "
+        result += str(self.private_key.public_key.e) + \
+                  "), " + \
+                  str(self.private_key.p) + \
+                  ", " + \
+                  str(self.private_key.q)
+        result += ", " + \
+                  str(self.private_key.d) + \
+                  ") \\\\ \\end{aligned} $$"
         self.check()
         return result
 
@@ -131,7 +164,8 @@ class RSA(interface.Process, interface.Value, interface.Encrypto, interface.Decr
         self.private_key.set_d(d)
         self.private_key.set_p(p)
         self.private_key.set_q(q)
-        result = (self.private_key.public_key.n, self.private_key.public_key.e), self.private_key.p, self.private_key.q, self.private_key.d
+        result = (self.private_key.public_key.n,
+                  self.private_key.public_key.e), self.private_key.p, self.private_key.q, self.private_key.d
         self.check()
         return result
 
@@ -148,42 +182,94 @@ class RSA(interface.Process, interface.Value, interface.Encrypto, interface.Decr
     def encrypto(self, plain_text):
         self.check()
         result = "$$ \\begin{aligned} "
-        result += "& PublicKey:(n, e) = (" + str(self.public_key.n) + ", " + str(self.public_key.e) + ") \\\\"
-        result += "& PrivateKey:(PublicKey(n, e), p, q, d) = ((" + str(self.private_key.public_key.n) + ", "
-        result += str(self.private_key.public_key.e) + "), " + str(self.private_key.p) + ", " + str(self.private_key.q)
-        result += ", " + str(self.private_key.d) + ") \\\\ \\end{aligned} $$"
-        result += "$$ \\begin{aligned} &plain \;text:\;" + plain_text + r" \\ & \xrightarrow{base16encode}\;"
+        result += "& PublicKey:(n, e) = (" + \
+                  str(self.public_key.n) + \
+                  ", " + \
+                  str(self.public_key.e) + \
+                  ") \\\\"
+        result += "& PrivateKey:(PublicKey(n, e), p, q, d) = ((" + \
+                  str(self.private_key.public_key.n) + \
+                  ", "
+        result += str(self.private_key.public_key.e) + \
+                  "), " + \
+                  str(self.private_key.p) + \
+                  ", " + \
+                  str(self.private_key.q)
+        result += ", " + \
+                  str(self.private_key.d) + \
+                  ") \\\\ \\end{aligned} $$"
+        result += "$$ \\begin{aligned} &plain \;text:\;" + \
+                  plain_text + \
+                  r" \\ & \xrightarrow{base16encode}\;"
         plain_text_num = base64.b16encode(plain_text.encode("utf-8"))
-        result += plain_text_num.decode("utf-8") + r"\\"
+        result += plain_text_num.decode("utf-8") + \
+                  r"\\"
         plain_text_num = int(plain_text_num, 16)
-        result += r"& \xrightarrow{int\;by\;hex} {" + str(plain_text_num) + "} \\\\"
+        result += r"& \xrightarrow{int\;by\;hex} {" + \
+                  str(plain_text_num) + "} \\\\"
         t = PowerMod.PowerMod(plain_text_num, self.public_key.e, self.public_key.n)
         crypto_text = hex(t.value()).replace("0x", "")
-        result += r"& \xrightarrow{encrypto}\; {" + str(plain_text_num) + "}^{" + str(self.public_key.e) + "}\;mod\;{"\
-                  + str(self.public_key.n) + "} \\\\"
-        result += r"& \rightarrow crypto number:" + str(t.value()) + r"\\"
-        result += r"& \xrightarrow{encode} crypto text:" + crypto_text + r"\\ \end{aligned} $$"
+        result += r"& \xrightarrow{encrypto}\; {" + \
+                  str(plain_text_num) + \
+                  "}^{" + \
+                  str(self.public_key.e) + \
+                  "}\;mod\;{" + \
+                  str(self.public_key.n) + \
+                  "} \\\\"
+        result += r"& \rightarrow crypto number:" + \
+                  str(t.value()) + \
+                  r"\\"
+        result += r"& \xrightarrow{encode} crypto text:" + \
+                  crypto_text + \
+                  r"\\ \end{aligned} $$"
         return crypto_text, result
 
     def decrypto(self, crypto_text):
         self.check()
         result = "$$ \\begin{aligned} "
-        result += "& PublicKey:(n, e) = (" + str(self.public_key.n) + ", " + str(
-            self.public_key.e) + ") \\\\"
-        result += "& PrivateKey:(PublicKey(n, e), p, q, d) = ((" + str(self.private_key.public_key.n) + ", "
-        result += str(self.private_key.public_key.e) + "), " + str(self.private_key.p) + ", " + str(self.private_key.q)
-        result += ", " + str(self.private_key.d) + ") \\\\ \\end{aligned} $$"
-        result += "$$ \\begin{aligned} & crypto \;text: \;" + crypto_text + r"\\ & \xrightarrow{decode}\;"
+        result += "& PublicKey:(n, e) = (" + \
+                  str(self.public_key.n) + \
+                  ", " + \
+                  str(self.public_key.e) + \
+                  ") \\\\"
+        result += "& PrivateKey:(PublicKey(n, e), p, q, d) = ((" + \
+                  str(self.private_key.public_key.n) + \
+                  ", "
+        result += str(self.private_key.public_key.e) + \
+                  "), " + \
+                  str(self.private_key.p) + \
+                  ", " + \
+                  str(self.private_key.q)
+        result += ", " + \
+                  str(self.private_key.d) + \
+                  ") \\\\ \\end{aligned} $$"
+        result += "$$ \\begin{aligned} & crypto \;text: \;" + \
+                  crypto_text + \
+                  r"\\ & \xrightarrow{decode}\;"
         crypto_num = int(crypto_text, 16)
-        result += "{" + str(crypto_num) + r"} \\ & \xrightarrow{decrypto}\;"
+        result += "{" + \
+                  str(crypto_num) + \
+                  r"} \\ & \xrightarrow{decrypto}\;"
         t = PowerMod.PowerMod(crypto_num, self.private_key.d, self.private_key.public_key.n)
-        result += "{" + str(crypto_num) + "}^{" + str(self.private_key.d) + "}\;mod\;{" + str(self.private_key.public_key.n) + "} \\\\"
+        result += "{" + \
+                  str(crypto_num) + \
+                  "}^{" + \
+                  str(self.private_key.d) + \
+                  "}\;mod\;{" + \
+                  str(self.private_key.public_key.n) + \
+                  "} \\\\"
         temp = t.value()
-        result += r"& \rightarrow {" + str(temp) + "} \\\\"
+        result += r"& \rightarrow {" + \
+                  str(temp) + \
+                  "} \\\\"
         plain_text = hex(temp).replace("0x", "")
-        result += "& \\xrightarrow{hex\;by\;int} {" + plain_text + "} \\\\"
+        result += "& \\xrightarrow{hex\;by\;int} {" + \
+                  plain_text + \
+                  "} \\\\"
         plain_text = base64.b16decode(plain_text.upper().encode("utf-8")).decode("utf-8")
-        result += r"& \xrightarrow{base16decode} {" + plain_text + "} \\\\ \\end{aligned} $$"
+        result += r"& \xrightarrow{base16decode} {" + \
+                  plain_text + \
+                  "} \\\\ \\end{aligned} $$"
         return plain_text, result
 
 
@@ -213,34 +299,20 @@ def generate_rand_odd(bit_len):
 
 
 def is_congruent(a, b, n):
-    r = (a-b) % n
+    r = (a - b) % n
     if r == 0:
         return True
     else:
         return False
 
 
-"""用费尔马小定理对guessp进行一次测试
-guessp是一个正整数
-b也是一个正整数，范围是1到n-1
-如果通过测试返回True
-否则返回False"""
-
-
 def one_fermat_test(guessp, b):
-    guessp_1 = guessp-1
+    guessp_1 = guessp - 1
     result = pow(b, guessp_1, guessp)
     if result == 1:
         return True
     else:
         return False
-
-
-"""用费尔马小定理对p进行多次测试，
-p是一个是正整数
-times是测试次数，一个正整数int，推荐30-100
-如果通过了所有次的测试返回True
-否则返回False"""
 
 
 def many_fermat_test(p, times):
@@ -249,13 +321,6 @@ def many_fermat_test(p, times):
         if not one_fermat_test(p, b):
             return False
     return True
-
-
-"""用费尔马测试方法生成指定长度的随机素数
-bitlen是素数的长度
-times是测试次数,是一个正整数，推荐30-100
-返回一个找到的素数
-"""
 
 
 def generate_prime_by_fermat(bitlen, times):
@@ -270,36 +335,22 @@ def generate_prime_by_fermat(bitlen, times):
             continue
 
 
-"""将a分解为2的s次方乘以m的形式
-a是一个正整数
-返回一个tuple，两个元素是s和m
-s是整数
-m是正整数"""
-
-
 def get_2power_mulm(a):
     if a == 0:
-        return(0, 0)
+        return (0, 0)
     s = 0
     m = a
     while True:
         q, r = divmod(m, 2)
         if r == 0:
-            s = s+1
+            s = s + 1
             m = q
         else:
             return (s, m)
 
 
-"""用MillerRabin方法对guessp进行一次测试
-guessp是一个正整数
-b也是一个正整数，范围是1到n-1
-如果通过测试返回True
-否则返回False"""
-
-
 def one_MR_test(guessp, b):
-    guessp_1 = guessp-1
+    guessp_1 = guessp - 1
     s, m = get_2power_mulm(guessp_1)
     r = 0
     z = pow(b, m, guessp)
@@ -308,19 +359,12 @@ def one_MR_test(guessp, b):
     if z == guessp_1:
         return True
     while True:
-        if r == s-1:
+        if r == s - 1:
             return False
-        r = r+1
-        qqq, z = divmod(z*z, guessp)  # qqq没有用
+        r = r + 1
+        _, z = divmod(z * z, guessp)
         if z == guessp_1:
             return True
-
-
-"""用MillerRabin方法对p进行多次测试，
-p是一个正整数
-times是测试次数，一个正整数，推荐30-100
-如果通过了所有次的测试返回True
-否则返回False"""
 
 
 def many_MR_test(p, times):
@@ -329,13 +373,6 @@ def many_MR_test(p, times):
         if not one_MR_test(p, b):
             return False
     return True
-
-
-"""用MillerRabin方法生成指定长度的随机素数
-bitlen是素数的bit长度
-times是测试次数，一个正整数，推荐30-100
-返回一个找到的素数
-"""
 
 
 def generate_prime_by_MR(bitlen, times):
@@ -350,19 +387,12 @@ def generate_prime_by_MR(bitlen, times):
             continue
 
 
-"""用SolovayStrassen方法对guessp进行一次测试
-guessp是一个正整数
-b也是一个正整数，范围是1到n-1
-如果通过测试返回True
-否则返回False"""
-
-
 def one_SS_test(guessp, b):
     d, _, _ = ExtendedEuclidean.ExtendedEuclidean(guessp, b).value()
     if not d == 1:
         return False
     J = Jacobi.Jacobi(b, guessp).value()
-    guessp_1 = guessp-1
+    guessp_1 = guessp - 1
     e, _ = divmod(guessp_1, 2)
     z = pow(b, e, guessp)
     if is_congruent(J, z, guessp):
@@ -371,26 +401,12 @@ def one_SS_test(guessp, b):
         return False
 
 
-"""用SolovayStrassen方法对p进行多次测试，
-p是一个正整数
-times是测试次数，一个正整数int，推荐30-100
-如果通过了所有次的测试返回True
-否则返回False"""
-
-
 def many_SS_test(p, times):
     for i in range(times):
         b = random.randrange(2, p, 1)
         if not one_SS_test(p, b):
             return False
     return True
-
-
-"""用SolovayStrassen方法生成指定长度的随机素数
-bitlen是素数的bit长度
-times是一个正整数int，推荐30-100
-返回一个正整数是找到的素数
-"""
 
 
 def generate_prime_by_SS(bitlen, times):
@@ -406,7 +422,7 @@ def generate_prime_by_SS(bitlen, times):
 
 
 def primality_test(n):
-        # test whether n is a prime number or not
+    # test whether n is a prime number or not
     small_prime_list = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
                         71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149,
                         151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229,

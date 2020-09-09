@@ -1,7 +1,3 @@
-"""
-Author: AlwaysStudent
-PythonVersion: 3.7
-"""
 from abc import ABCMeta, abstractmethod
 
 

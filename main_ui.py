@@ -1,20 +1,9 @@
-# -*- coding: utf-8 -*-
-
-################################################################################
-## Form generated from reading UI file 'main.ui'
-##
-## Created by: Qt User Interface Compiler version 5.15.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
-
 from PySide2.QtCore import (QCoreApplication, QDate, QDateTime, QMetaObject,
     QObject, QPoint, QRect, QSize, QTime, QUrl, Qt)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
-
 from PySide2.QtWebEngineWidgets import QWebEngineView
 
 
@@ -42,95 +31,57 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.label_5 = QLabel(self.layoutWidget)
         self.label_5.setObjectName(u"label_5")
-
         self.gridLayout_2.addWidget(self.label_5, 0, 0, 1, 1)
-
         self.ExtendedEuclideanAEditer = QLineEdit(self.layoutWidget)
         self.ExtendedEuclideanAEditer.setObjectName(u"ExtendedEuclideanAEditer")
-
         self.gridLayout_2.addWidget(self.ExtendedEuclideanAEditer, 0, 1, 1, 1)
-
         self.label_6 = QLabel(self.layoutWidget)
         self.label_6.setObjectName(u"label_6")
-
         self.gridLayout_2.addWidget(self.label_6, 1, 0, 1, 1)
-
         self.ExtendedEuclideanBEditer = QLineEdit(self.layoutWidget)
         self.ExtendedEuclideanBEditer.setObjectName(u"ExtendedEuclideanBEditer")
-
         self.gridLayout_2.addWidget(self.ExtendedEuclideanBEditer, 1, 1, 1, 1)
-
-
         self.gridLayout_3.addLayout(self.gridLayout_2, 0, 0, 1, 1)
-
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
         self.label = QLabel(self.layoutWidget)
         self.label.setObjectName(u"label")
-
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-
         self.ExtendedEuclideanMinAEditer = QLineEdit(self.layoutWidget)
         self.ExtendedEuclideanMinAEditer.setObjectName(u"ExtendedEuclideanMinAEditer")
-
         self.gridLayout.addWidget(self.ExtendedEuclideanMinAEditer, 0, 1, 1, 1)
-
         self.label_4 = QLabel(self.layoutWidget)
         self.label_4.setObjectName(u"label_4")
-
         self.gridLayout.addWidget(self.label_4, 0, 2, 1, 1)
-
         self.ExtendedEuclideanMaxAEditer = QLineEdit(self.layoutWidget)
         self.ExtendedEuclideanMaxAEditer.setObjectName(u"ExtendedEuclideanMaxAEditer")
-
         self.gridLayout.addWidget(self.ExtendedEuclideanMaxAEditer, 0, 3, 1, 1)
-
         self.label_2 = QLabel(self.layoutWidget)
         self.label_2.setObjectName(u"label_2")
-
         self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
-
         self.ExtendedEuclideanMinBEditer = QLineEdit(self.layoutWidget)
         self.ExtendedEuclideanMinBEditer.setObjectName(u"ExtendedEuclideanMinBEditer")
-
         self.gridLayout.addWidget(self.ExtendedEuclideanMinBEditer, 1, 1, 1, 1)
-
         self.label_3 = QLabel(self.layoutWidget)
         self.label_3.setObjectName(u"label_3")
-
         self.gridLayout.addWidget(self.label_3, 1, 2, 1, 1)
-
         self.ExtendedEuclideanMaxBEditer = QLineEdit(self.layoutWidget)
         self.ExtendedEuclideanMaxBEditer.setObjectName(u"ExtendedEuclideanMaxBEditer")
-
         self.gridLayout.addWidget(self.ExtendedEuclideanMaxBEditer, 1, 3, 1, 1)
-
-
         self.gridLayout_3.addLayout(self.gridLayout, 1, 0, 1, 1)
-
-
         self.gridLayout_5.addLayout(self.gridLayout_3, 0, 0, 1, 1)
-
         self.gridLayout_4 = QGridLayout()
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.ExtendedEuclideanCalculateButton = QPushButton(self.layoutWidget)
         self.ExtendedEuclideanCalculateButton.setObjectName(u"ExtendedEuclideanCalculateButton")
-
         self.gridLayout_4.addWidget(self.ExtendedEuclideanCalculateButton, 2, 0, 1, 1)
-
         self.ExtendedEuclideanRandomButton = QCheckBox(self.layoutWidget)
         self.ExtendedEuclideanRandomButton.setObjectName(u"ExtendedEuclideanRandomButton")
-
         self.gridLayout_4.addWidget(self.ExtendedEuclideanRandomButton, 0, 0, 1, 1)
-
         self.ExtendedEuclidean_1_Button = QCheckBox(self.layoutWidget)
         self.ExtendedEuclidean_1_Button.setObjectName(u"ExtendedEuclidean_1_Button")
-
         self.gridLayout_4.addWidget(self.ExtendedEuclidean_1_Button, 1, 0, 1, 1)
-
-
         self.gridLayout_5.addLayout(self.gridLayout_4, 0, 1, 1, 1)
-
         self.Tab.addTab(self.ExtendedEuclidean, "")
         self.PowerMod = QWidget()
         self.PowerMod.setObjectName(u"PowerMod")
@@ -144,52 +95,32 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label_7 = QLabel(self.layoutWidget1)
         self.label_7.setObjectName(u"label_7")
-
         self.horizontalLayout.addWidget(self.label_7)
-
         self.PowerModA = QLineEdit(self.layoutWidget1)
         self.PowerModA.setObjectName(u"PowerModA")
-
         self.horizontalLayout.addWidget(self.PowerModA)
-
         self.label_8 = QLabel(self.layoutWidget1)
         self.label_8.setObjectName(u"label_8")
-
         self.horizontalLayout.addWidget(self.label_8)
-
         self.PowerModB = QLineEdit(self.layoutWidget1)
         self.PowerModB.setObjectName(u"PowerModB")
-
         self.horizontalLayout.addWidget(self.PowerModB)
-
         self.label_9 = QLabel(self.layoutWidget1)
         self.label_9.setObjectName(u"label_9")
-
         self.horizontalLayout.addWidget(self.label_9)
-
         self.PowerModP = QLineEdit(self.layoutWidget1)
         self.PowerModP.setObjectName(u"PowerModP")
-
         self.horizontalLayout.addWidget(self.PowerModP)
-
-
         self.horizontalLayout_2.addLayout(self.horizontalLayout)
-
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.PowerModRandomButton = QPushButton(self.layoutWidget1)
         self.PowerModRandomButton.setObjectName(u"PowerModRandomButton")
-
         self.verticalLayout.addWidget(self.PowerModRandomButton)
-
         self.PowerModCalculateButton = QPushButton(self.layoutWidget1)
         self.PowerModCalculateButton.setObjectName(u"PowerModCalculateButton")
-
         self.verticalLayout.addWidget(self.PowerModCalculateButton)
-
-
         self.horizontalLayout_2.addLayout(self.verticalLayout)
-
         self.Tab.addTab(self.PowerMod, "")
         self.Jacobi = QWidget()
         self.Jacobi.setObjectName(u"Jacobi")
@@ -205,134 +136,82 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.label_13 = QLabel(self.layoutWidget2)
         self.label_13.setObjectName(u"label_13")
-
         self.horizontalLayout_3.addWidget(self.label_13)
-
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.label_11 = QLabel(self.layoutWidget2)
         self.label_11.setObjectName(u"label_11")
-
         self.verticalLayout_2.addWidget(self.label_11)
-
         self.line_2 = QFrame(self.layoutWidget2)
         self.line_2.setObjectName(u"line_2")
         self.line_2.setFrameShape(QFrame.HLine)
         self.line_2.setFrameShadow(QFrame.Sunken)
-
         self.verticalLayout_2.addWidget(self.line_2)
-
         self.label_10 = QLabel(self.layoutWidget2)
         self.label_10.setObjectName(u"label_10")
-
         self.verticalLayout_2.addWidget(self.label_10)
-
-
         self.horizontalLayout_3.addLayout(self.verticalLayout_2)
-
         self.label_12 = QLabel(self.layoutWidget2)
         self.label_12.setObjectName(u"label_12")
-
         self.horizontalLayout_3.addWidget(self.label_12)
-
         self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.JacobiEditorA = QLineEdit(self.layoutWidget2)
         self.JacobiEditorA.setObjectName(u"JacobiEditorA")
-
         self.verticalLayout_3.addWidget(self.JacobiEditorA)
-
         self.line = QFrame(self.layoutWidget2)
         self.line.setObjectName(u"line")
         self.line.setFrameShape(QFrame.HLine)
         self.line.setFrameShadow(QFrame.Sunken)
-
         self.verticalLayout_3.addWidget(self.line)
-
         self.JacobiEditorM = QLineEdit(self.layoutWidget2)
         self.JacobiEditorM.setObjectName(u"JacobiEditorM")
-
         self.verticalLayout_3.addWidget(self.JacobiEditorM)
-
-
         self.horizontalLayout_3.addLayout(self.verticalLayout_3)
-
         self.label_15 = QLabel(self.layoutWidget2)
         self.label_15.setObjectName(u"label_15")
-
         self.horizontalLayout_3.addWidget(self.label_15)
-
-
         self.verticalLayout_5.addLayout(self.horizontalLayout_3)
-
         self.gridLayout_6 = QGridLayout()
         self.gridLayout_6.setObjectName(u"gridLayout_6")
         self.label_17 = QLabel(self.layoutWidget2)
         self.label_17.setObjectName(u"label_17")
-
         self.gridLayout_6.addWidget(self.label_17, 0, 0, 1, 1)
-
         self.JacobiEditorMinA = QLineEdit(self.layoutWidget2)
         self.JacobiEditorMinA.setObjectName(u"JacobiEditorMinA")
-
         self.gridLayout_6.addWidget(self.JacobiEditorMinA, 0, 1, 1, 1)
-
         self.label_14 = QLabel(self.layoutWidget2)
         self.label_14.setObjectName(u"label_14")
-
         self.gridLayout_6.addWidget(self.label_14, 0, 2, 1, 1)
-
         self.JacobiEditorMaxA = QLineEdit(self.layoutWidget2)
         self.JacobiEditorMaxA.setObjectName(u"JacobiEditorMaxA")
-
         self.gridLayout_6.addWidget(self.JacobiEditorMaxA, 0, 3, 1, 1)
-
         self.label_18 = QLabel(self.layoutWidget2)
         self.label_18.setObjectName(u"label_18")
-
         self.gridLayout_6.addWidget(self.label_18, 1, 0, 1, 1)
-
         self.JacobiEditorMinM = QLineEdit(self.layoutWidget2)
         self.JacobiEditorMinM.setObjectName(u"JacobiEditorMinM")
-
         self.gridLayout_6.addWidget(self.JacobiEditorMinM, 1, 1, 1, 1)
-
         self.label_16 = QLabel(self.layoutWidget2)
         self.label_16.setObjectName(u"label_16")
-
         self.gridLayout_6.addWidget(self.label_16, 1, 2, 1, 1)
-
         self.JacobiEditorMaxM = QLineEdit(self.layoutWidget2)
         self.JacobiEditorMaxM.setObjectName(u"JacobiEditorMaxM")
-
         self.gridLayout_6.addWidget(self.JacobiEditorMaxM, 1, 3, 1, 1)
-
-
         self.verticalLayout_5.addLayout(self.gridLayout_6)
-
-
         self.horizontalLayout_4.addLayout(self.verticalLayout_5)
-
         self.verticalLayout_4 = QVBoxLayout()
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.JacobiLegendreCheckBox = QCheckBox(self.layoutWidget2)
         self.JacobiLegendreCheckBox.setObjectName(u"JacobiLegendreCheckBox")
-
         self.verticalLayout_4.addWidget(self.JacobiLegendreCheckBox)
-
         self.JacobiRandomPushButton = QPushButton(self.layoutWidget2)
         self.JacobiRandomPushButton.setObjectName(u"JacobiRandomPushButton")
-
         self.verticalLayout_4.addWidget(self.JacobiRandomPushButton)
-
         self.JacobiCalculatePushButton = QPushButton(self.layoutWidget2)
         self.JacobiCalculatePushButton.setObjectName(u"JacobiCalculatePushButton")
-
         self.verticalLayout_4.addWidget(self.JacobiCalculatePushButton)
-
-
         self.horizontalLayout_4.addLayout(self.verticalLayout_4)
-
         self.Tab.addTab(self.Jacobi, "")
         self.CRT = QWidget()
         self.CRT.setObjectName(u"CRT")
@@ -351,145 +230,87 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.label_19 = QLabel(self.layoutWidget3)
         self.label_19.setObjectName(u"label_19")
-
         self.verticalLayout_9.addWidget(self.label_19)
-
         self.label_21 = QLabel(self.layoutWidget3)
         self.label_21.setObjectName(u"label_21")
-
         self.verticalLayout_9.addWidget(self.label_21)
-
         self.label_23 = QLabel(self.layoutWidget3)
         self.label_23.setObjectName(u"label_23")
-
         self.verticalLayout_9.addWidget(self.label_23)
-
         self.label_25 = QLabel(self.layoutWidget3)
         self.label_25.setObjectName(u"label_25")
-
         self.verticalLayout_9.addWidget(self.label_25)
-
         self.label_27 = QLabel(self.layoutWidget3)
         self.label_27.setObjectName(u"label_27")
-
         self.verticalLayout_9.addWidget(self.label_27)
-
-
         self.horizontalLayout_5.addLayout(self.verticalLayout_9)
-
         self.verticalLayout_8 = QVBoxLayout()
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.CRTRemainder1 = QLineEdit(self.layoutWidget3)
         self.CRTRemainder1.setObjectName(u"CRTRemainder1")
-
         self.verticalLayout_8.addWidget(self.CRTRemainder1)
-
         self.CRTRemainder2 = QLineEdit(self.layoutWidget3)
         self.CRTRemainder2.setObjectName(u"CRTRemainder2")
-
         self.verticalLayout_8.addWidget(self.CRTRemainder2)
-
         self.CRTRemainder3 = QLineEdit(self.layoutWidget3)
         self.CRTRemainder3.setObjectName(u"CRTRemainder3")
-
         self.verticalLayout_8.addWidget(self.CRTRemainder3)
-
         self.CRTRemainder4 = QLineEdit(self.layoutWidget3)
         self.CRTRemainder4.setObjectName(u"CRTRemainder4")
-
         self.verticalLayout_8.addWidget(self.CRTRemainder4)
-
         self.CRTRemainder5 = QLineEdit(self.layoutWidget3)
         self.CRTRemainder5.setObjectName(u"CRTRemainder5")
-
         self.verticalLayout_8.addWidget(self.CRTRemainder5)
-
-
         self.horizontalLayout_5.addLayout(self.verticalLayout_8)
-
         self.verticalLayout_7 = QVBoxLayout()
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.label_20 = QLabel(self.layoutWidget3)
         self.label_20.setObjectName(u"label_20")
-
         self.verticalLayout_7.addWidget(self.label_20)
-
         self.label_22 = QLabel(self.layoutWidget3)
         self.label_22.setObjectName(u"label_22")
-
         self.verticalLayout_7.addWidget(self.label_22)
-
         self.label_24 = QLabel(self.layoutWidget3)
         self.label_24.setObjectName(u"label_24")
-
         self.verticalLayout_7.addWidget(self.label_24)
-
         self.label_26 = QLabel(self.layoutWidget3)
         self.label_26.setObjectName(u"label_26")
-
         self.verticalLayout_7.addWidget(self.label_26)
-
         self.label_28 = QLabel(self.layoutWidget3)
         self.label_28.setObjectName(u"label_28")
-
         self.verticalLayout_7.addWidget(self.label_28)
-
-
         self.horizontalLayout_5.addLayout(self.verticalLayout_7)
-
         self.verticalLayout_6 = QVBoxLayout()
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.CRTMod1 = QLineEdit(self.layoutWidget3)
         self.CRTMod1.setObjectName(u"CRTMod1")
-
         self.verticalLayout_6.addWidget(self.CRTMod1)
-
         self.CRTMod2 = QLineEdit(self.layoutWidget3)
         self.CRTMod2.setObjectName(u"CRTMod2")
-
         self.verticalLayout_6.addWidget(self.CRTMod2)
-
         self.CRTMod3 = QLineEdit(self.layoutWidget3)
         self.CRTMod3.setObjectName(u"CRTMod3")
-
         self.verticalLayout_6.addWidget(self.CRTMod3)
-
         self.CRTMod4 = QLineEdit(self.layoutWidget3)
         self.CRTMod4.setObjectName(u"CRTMod4")
-
         self.verticalLayout_6.addWidget(self.CRTMod4)
-
         self.CRTMod5 = QLineEdit(self.layoutWidget3)
         self.CRTMod5.setObjectName(u"CRTMod5")
-
         self.verticalLayout_6.addWidget(self.CRTMod5)
-
-
         self.horizontalLayout_5.addLayout(self.verticalLayout_6)
-
-
         self.horizontalLayout_6.addLayout(self.horizontalLayout_5)
-
         self.verticalLayout_10 = QVBoxLayout()
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.label_30 = QLabel(self.layoutWidget3)
         self.label_30.setObjectName(u"label_30")
-
         self.verticalLayout_10.addWidget(self.label_30)
-
         self.label_31 = QLabel(self.layoutWidget3)
         self.label_31.setObjectName(u"label_31")
-
         self.verticalLayout_10.addWidget(self.label_31)
-
         self.CRTCalculateButton = QPushButton(self.layoutWidget3)
         self.CRTCalculateButton.setObjectName(u"CRTCalculateButton")
-
         self.verticalLayout_10.addWidget(self.CRTCalculateButton)
-
-
         self.horizontalLayout_6.addLayout(self.verticalLayout_10)
-
         self.Tab.addTab(self.CRT, "")
         self.EulerTheorem = QWidget()
         self.EulerTheorem.setObjectName(u"EulerTheorem")
@@ -505,70 +326,42 @@ class Ui_MainWindow(object):
         self.gridLayout_7.setObjectName(u"gridLayout_7")
         self.label_32 = QLabel(self.layoutWidget4)
         self.label_32.setObjectName(u"label_32")
-
         self.gridLayout_7.addWidget(self.label_32, 0, 0, 1, 1)
-
         self.EulerTheoremAEditor = QLineEdit(self.layoutWidget4)
         self.EulerTheoremAEditor.setObjectName(u"EulerTheoremAEditor")
-
         self.gridLayout_7.addWidget(self.EulerTheoremAEditor, 0, 1, 1, 1)
-
         self.label_33 = QLabel(self.layoutWidget4)
         self.label_33.setObjectName(u"label_33")
-
         self.gridLayout_7.addWidget(self.label_33, 1, 0, 1, 1)
-
         self.EulerTheoremBEditor = QLineEdit(self.layoutWidget4)
         self.EulerTheoremBEditor.setObjectName(u"EulerTheoremBEditor")
-
         self.gridLayout_7.addWidget(self.EulerTheoremBEditor, 1, 1, 1, 1)
-
-
         self.horizontalLayout_9.addLayout(self.gridLayout_7)
-
         self.horizontalLayout_7 = QHBoxLayout()
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.label_34 = QLabel(self.layoutWidget4)
         self.label_34.setObjectName(u"label_34")
-
         self.horizontalLayout_7.addWidget(self.label_34)
-
         self.EulerTheoremPEditor = QLineEdit(self.layoutWidget4)
         self.EulerTheoremPEditor.setObjectName(u"EulerTheoremPEditor")
-
         self.horizontalLayout_7.addWidget(self.EulerTheoremPEditor)
-
-
         self.horizontalLayout_9.addLayout(self.horizontalLayout_7)
-
-
         self.verticalLayout_12.addLayout(self.horizontalLayout_9)
-
         self.horizontalLayout_8 = QHBoxLayout()
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.label_35 = QLabel(self.layoutWidget4)
         self.label_35.setObjectName(u"label_35")
-
         self.horizontalLayout_8.addWidget(self.label_35)
-
         self.verticalLayout_11 = QVBoxLayout()
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.EulerTheoremRandomButton = QPushButton(self.layoutWidget4)
         self.EulerTheoremRandomButton.setObjectName(u"EulerTheoremRandomButton")
-
         self.verticalLayout_11.addWidget(self.EulerTheoremRandomButton)
-
         self.EulerTheoremCalculateButton = QPushButton(self.layoutWidget4)
         self.EulerTheoremCalculateButton.setObjectName(u"EulerTheoremCalculateButton")
-
         self.verticalLayout_11.addWidget(self.EulerTheoremCalculateButton)
-
-
         self.horizontalLayout_8.addLayout(self.verticalLayout_11)
-
-
         self.verticalLayout_12.addLayout(self.horizontalLayout_8)
-
         self.Tab.addTab(self.EulerTheorem, "")
         self.CongruenceModEquation = QWidget()
         self.CongruenceModEquation.setObjectName(u"CongruenceModEquation")
@@ -586,93 +379,55 @@ class Ui_MainWindow(object):
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
         self.label_38 = QLabel(self.layoutWidget5)
         self.label_38.setObjectName(u"label_38")
-
         self.horizontalLayout_10.addWidget(self.label_38)
-
         self.CongruenceModEquationAEditor = QLineEdit(self.layoutWidget5)
         self.CongruenceModEquationAEditor.setObjectName(u"CongruenceModEquationAEditor")
-
         self.horizontalLayout_10.addWidget(self.CongruenceModEquationAEditor)
-
         self.label_39 = QLabel(self.layoutWidget5)
         self.label_39.setObjectName(u"label_39")
-
         self.horizontalLayout_10.addWidget(self.label_39)
-
         self.CongruenceModEquationBEditor = QLineEdit(self.layoutWidget5)
         self.CongruenceModEquationBEditor.setObjectName(u"CongruenceModEquationBEditor")
-
         self.horizontalLayout_10.addWidget(self.CongruenceModEquationBEditor)
-
         self.label_40 = QLabel(self.layoutWidget5)
         self.label_40.setObjectName(u"label_40")
-
         self.horizontalLayout_10.addWidget(self.label_40)
-
         self.CongruenceModEquationMEditor = QLineEdit(self.layoutWidget5)
         self.CongruenceModEquationMEditor.setObjectName(u"CongruenceModEquationMEditor")
-
         self.horizontalLayout_10.addWidget(self.CongruenceModEquationMEditor)
-
-
         self.verticalLayout_15.addLayout(self.horizontalLayout_10)
-
-
         self.horizontalLayout_13.addLayout(self.verticalLayout_15)
-
         self.horizontalLayout_11 = QHBoxLayout()
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.label_41 = QLabel(self.layoutWidget5)
         self.label_41.setObjectName(u"label_41")
-
         self.horizontalLayout_11.addWidget(self.label_41)
-
         self.CongruenceModEquationNumEditor = QLineEdit(self.layoutWidget5)
         self.CongruenceModEquationNumEditor.setObjectName(u"CongruenceModEquationNumEditor")
-
         self.horizontalLayout_11.addWidget(self.CongruenceModEquationNumEditor)
-
-
         self.horizontalLayout_13.addLayout(self.horizontalLayout_11)
-
-
         self.verticalLayout_16.addLayout(self.horizontalLayout_13)
-
         self.horizontalLayout_12 = QHBoxLayout()
         self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
         self.verticalLayout_13 = QVBoxLayout()
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.label_36 = QLabel(self.layoutWidget5)
         self.label_36.setObjectName(u"label_36")
-
         self.verticalLayout_13.addWidget(self.label_36)
-
         self.label_37 = QLabel(self.layoutWidget5)
         self.label_37.setObjectName(u"label_37")
-
         self.verticalLayout_13.addWidget(self.label_37)
-
-
         self.horizontalLayout_12.addLayout(self.verticalLayout_13)
-
         self.verticalLayout_14 = QVBoxLayout()
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
         self.CongruenceModEquationRandomButton = QPushButton(self.layoutWidget5)
         self.CongruenceModEquationRandomButton.setObjectName(u"CongruenceModEquationRandomButton")
-
         self.verticalLayout_14.addWidget(self.CongruenceModEquationRandomButton)
-
         self.CongruenceModEquationCalculateButton = QPushButton(self.layoutWidget5)
         self.CongruenceModEquationCalculateButton.setObjectName(u"CongruenceModEquationCalculateButton")
-
         self.verticalLayout_14.addWidget(self.CongruenceModEquationCalculateButton)
-
-
         self.horizontalLayout_12.addLayout(self.verticalLayout_14)
-
-
         self.verticalLayout_16.addLayout(self.horizontalLayout_12)
-
         self.Tab.addTab(self.CongruenceModEquation, "")
         self.RSA = QWidget()
         self.RSA.setObjectName(u"RSA")
@@ -688,119 +443,73 @@ class Ui_MainWindow(object):
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
         self.label_44 = QLabel(self.layoutWidget6)
         self.label_44.setObjectName(u"label_44")
-
         self.verticalLayout_17.addWidget(self.label_44)
-
         self.label_50 = QLabel(self.layoutWidget6)
         self.label_50.setObjectName(u"label_50")
-
         self.verticalLayout_17.addWidget(self.label_50)
-
         self.horizontalLayout_14 = QHBoxLayout()
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.label_42 = QLabel(self.layoutWidget6)
         self.label_42.setObjectName(u"label_42")
-
         self.horizontalLayout_14.addWidget(self.label_42)
-
         self.RSABitLenEditor = QLineEdit(self.layoutWidget6)
         self.RSABitLenEditor.setObjectName(u"RSABitLenEditor")
-
         self.horizontalLayout_14.addWidget(self.RSABitLenEditor)
-
         self.label_43 = QLabel(self.layoutWidget6)
         self.label_43.setObjectName(u"label_43")
-
         self.horizontalLayout_14.addWidget(self.label_43)
-
         self.RSAMethedComboBox = QComboBox(self.layoutWidget6)
         self.RSAMethedComboBox.addItem("")
         self.RSAMethedComboBox.addItem("")
         self.RSAMethedComboBox.addItem("")
         self.RSAMethedComboBox.setObjectName(u"RSAMethedComboBox")
-
         self.horizontalLayout_14.addWidget(self.RSAMethedComboBox)
-
-
         self.verticalLayout_17.addLayout(self.horizontalLayout_14)
-
-
         self.verticalLayout_20.addLayout(self.verticalLayout_17)
-
         self.RSAGenerateButton = QPushButton(self.layoutWidget6)
         self.RSAGenerateButton.setObjectName(u"RSAGenerateButton")
-
         self.verticalLayout_20.addWidget(self.RSAGenerateButton)
-
-
         self.horizontalLayout_17.addLayout(self.verticalLayout_20)
-
         self.verticalLayout_21 = QVBoxLayout()
         self.verticalLayout_21.setObjectName(u"verticalLayout_21")
         self.label_49 = QLabel(self.layoutWidget6)
         self.label_49.setObjectName(u"label_49")
-
         self.verticalLayout_21.addWidget(self.label_49)
-
         self.verticalLayout_19 = QVBoxLayout()
         self.verticalLayout_19.setObjectName(u"verticalLayout_19")
         self.horizontalLayout_16 = QHBoxLayout()
         self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
         self.label_45 = QLabel(self.layoutWidget6)
         self.label_45.setObjectName(u"label_45")
-
         self.horizontalLayout_16.addWidget(self.label_45)
-
         self.label_46 = QLabel(self.layoutWidget6)
         self.label_46.setObjectName(u"label_46")
         self.label_46.setLayoutDirection(Qt.LeftToRight)
-
         self.horizontalLayout_16.addWidget(self.label_46, 0, Qt.AlignRight)
-
-
         self.verticalLayout_19.addLayout(self.horizontalLayout_16)
-
         self.horizontalLayout_15 = QHBoxLayout()
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
         self.RSAPlaintextEdit = QTextEdit(self.layoutWidget6)
         self.RSAPlaintextEdit.setObjectName(u"RSAPlaintextEdit")
-
         self.horizontalLayout_15.addWidget(self.RSAPlaintextEdit)
-
         self.verticalLayout_18 = QVBoxLayout()
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.label_47 = QLabel(self.layoutWidget6)
         self.label_47.setObjectName(u"label_47")
-
         self.verticalLayout_18.addWidget(self.label_47)
-
         self.label_48 = QLabel(self.layoutWidget6)
         self.label_48.setObjectName(u"label_48")
-
         self.verticalLayout_18.addWidget(self.label_48)
-
-
         self.horizontalLayout_15.addLayout(self.verticalLayout_18)
-
         self.RSACryptotextEdit = QTextEdit(self.layoutWidget6)
         self.RSACryptotextEdit.setObjectName(u"RSACryptotextEdit")
-
         self.horizontalLayout_15.addWidget(self.RSACryptotextEdit)
-
-
         self.verticalLayout_19.addLayout(self.horizontalLayout_15)
-
-
         self.verticalLayout_21.addLayout(self.verticalLayout_19)
-
         self.RSACryptoButton = QPushButton(self.layoutWidget6)
         self.RSACryptoButton.setObjectName(u"RSACryptoButton")
-
         self.verticalLayout_21.addWidget(self.RSACryptoButton)
-
-
         self.horizontalLayout_17.addLayout(self.verticalLayout_21)
-
         self.Tab.addTab(self.RSA, "")
         self.WebView = QWebEngineView(self.centralwidget)
         self.WebView.setObjectName(u"WebView")
@@ -809,14 +518,9 @@ class Ui_MainWindow(object):
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
         self.retranslateUi(MainWindow)
-
         self.Tab.setCurrentIndex(6)
-
-
         QMetaObject.connectSlotsByName(MainWindow)
-    # setupUi
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u6570\u8bba\u4e13\u7528\u8ba1\u7b97\u5e73\u53f0", None))
@@ -888,7 +592,6 @@ class Ui_MainWindow(object):
         self.RSAMethedComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"SS", None))
         self.RSAMethedComboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"MR", None))
         self.RSAMethedComboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"FM", None))
-
         self.RSAGenerateButton.setText(QCoreApplication.translate("MainWindow", u"\u751f\u6210RSA\u79d8\u94a5", None))
         self.label_49.setText(QCoreApplication.translate("MainWindow", u"RSA\u52a0\u89e3\u5bc6", None))
         self.label_45.setText(QCoreApplication.translate("MainWindow", u"\u660e\u6587", None))
@@ -897,5 +600,4 @@ class Ui_MainWindow(object):
         self.label_48.setText(QCoreApplication.translate("MainWindow", u"<-", None))
         self.RSACryptoButton.setText(QCoreApplication.translate("MainWindow", u"\u8ba1\u7b97\u52a0\u89e3\u5bc6", None))
         self.Tab.setTabText(self.Tab.indexOf(self.RSA), QCoreApplication.translate("MainWindow", u"RSA\u7684\u751f\u6210\u548c\u8ba1\u7b97", None))
-    # retranslateUi
 

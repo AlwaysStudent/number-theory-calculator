@@ -1,7 +1,3 @@
-"""
-Author: AlwaysStudent
-PythonVersion: 3.7
-"""
 import math
 from pkg import interface
 from pkg import ExtendedEuclidean
@@ -22,27 +18,55 @@ class CongruenceModEquation(interface.Value, interface.Process):
     def process(self) -> str:
         result = "$$ \\begin{aligned} "
         if self.num != 1:
-            result += "&\\because (" + ", ".join([str(self.a), str(self.b), str(self.m)]) + ") = " + str(self.num) + "\\\\ &\\therefore"
+            result += "&\\because (" + \
+                      ", ".join([str(self.a), str(self.b), str(self.m)]) + \
+                      ") = " + \
+                      str(self.num) + \
+                      "\\\\ &\\therefore"
         else:
             result += "&\\because"
-        result += "{" + str(self.a) + "} {x} \;\equiv\; {" + str(self.b) + "}\;mod\;{" + str(self.m) + "} \\\\"
+        result += "{" + \
+                  str(self.a) + \
+                  "} {x} \;\equiv\; {" + \
+                  str(self.b) + \
+                  "}\;mod\;{" + \
+                  str(self.m) + \
+                  "} \\\\"
         a = self.a // self.num
         b = self.b // self.num
         m = self.m // self.num
-        result += "&\\therefore{" + str(a) + "} {x} \;\equiv\; {" + str(b) + "}\;mod\;{" + str(m) + "} \\\\ \\end{aligned} $$"
+        result += "&\\therefore{" + \
+                  str(a) + \
+                  "} {x} \;\equiv\; {" + \
+                  str(b) + \
+                  "}\;mod\;{" + \
+                  str(m) + \
+                  "} \\\\ \\end{aligned} $$"
         temp = ExtendedEuclidean.ExtendedEuclidean(a, m)
         result += temp.process()
         t, x, _ = temp.value()
         if t != 1:
-            result += "$$ \\begin{aligned} \\because (" + str(a) + ", " + str(m) + ") \\not= 1 \\\\ \\therefore No\;Solution \\end{aligned} $$"
+            result += "$$ \\begin{aligned} \\because (" + \
+                      str(a) + \
+                      ", " + \
+                      str(m) + \
+                      ") \\not= 1 \\\\ \\therefore No\;Solution \\end{aligned} $$"
             return result
         else:
             b = x * b % m
-            result += "$$ \\begin{aligned} \\therefore {x} \;&\equiv\; {" + str(b) + "}\;mod\;{" + str(m) + "} \\\\ "
+            result += "$$ \\begin{aligned} \\therefore {x} \;&\equiv\; {" + \
+                      str(b) + \
+                      "}\;mod\;{" + \
+                      str(m) + \
+                      "} \\\\ "
         if self.num != 1:
             result += "\\therefore"
             for i in range(self.num):
-                result += "{x} \;&\equiv\; {" + str(b + i * m) + "}\;mod\;{" + str(self.m) + "} \\\\"
+                result += "{x} \;&\equiv\; {" + \
+                          str(b + i * m) + \
+                          "}\;mod\;{" + \
+                          str(self.m) + \
+                          "} \\\\"
         return result + "\\end{aligned} $$"
 
     def value(self):

@@ -1,7 +1,3 @@
-"""
-Author: AlwaysStudent
-PythonVersion: 3.7
-"""
 from main_ui import *
 from PySide2 import QtWebEngineWidgets
 import sys
@@ -53,7 +49,6 @@ class MainWindow(QMainWindow):
         result = result_text + temp_text
         self.ui.RSACryptotextEdit.setText(crypto_text)
         self.Display(result)
-
 
     def CongruenceModEquationInit(self):
         self.ui.CongruenceModEquationNumEditor.setText("1")
@@ -234,7 +229,6 @@ class MainWindow(QMainWindow):
             ErrorText = "所需的文本框未填写或包含非数字"
             ErrorMessageBox(ErrorText)
 
-
     def ExtendedEuclideanInit(self):
         self.ui.ExtendedEuclideanMaxAEditer.setText("200")
         self.ui.ExtendedEuclideanMaxBEditer.setText("200")
@@ -311,4 +305,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
